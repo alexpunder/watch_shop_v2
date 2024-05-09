@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="breadcumb-wrapper " data-bg-src="assets/img/breadcumb/breadcumb-bg.png">
+    <div class="container z-index-common">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Error Page</h1>
+            <p class="breadcumb-text">Search over 200 individual encyclopedias and reference books.</p>
+            <div class="breadcumb-menu-wrap">
+                <ul class="breadcumb-menu">
+                    <li><a href="{% url 'main:index' %}">Главная</a></li>
+                    <li>Страница ошибки</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="vs-error-wrapper  ">
+    <div class="container">
+        <div class="row flex-row-reverse text-center text-xl-start">
+            <div class="col-xl-6 col-xxl-7 text-xl-end">
+                <div class="error-img">
+                    <img src="assets/img/shape/error-1-1.png" alt="error image">
+                </div>
+            </div>
+            <div class="col-xl-6 col-xxl-5 align-self-center">
+                <div class="error-content">
+                    <h1 class="error-title">oooops!</h1>
+                    <h2 class="error-title2">Страница не найдена</h2>
+                    <p class="error-text">ресурс, который вы ищете, мог быть удален или он временно недоступен</p>
+                    {% comment %} <form action="#" class="search-inline">
+                        <input type="text" class="form-control" placeholder="Enter Your Keyword....">
+                        <button><i class="far fa-search"></i></button>
+                    </form> {% endcomment %}
+                    <a href="{% url 'main:index' %}" class="vs-btn"><i class="fas fa-home me-2 pe-1"></i>Вернуться на главную страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
