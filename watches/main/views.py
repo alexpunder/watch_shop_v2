@@ -8,6 +8,34 @@ def index_page_view(request):
     )
 
 
+def buyback_view_page(request):
+    return render(
+        request,
+        template_name='watches/buyback.html'
+    )
+
+
+def watches_page_view(request):
+    return render(
+        request,
+        template_name='watches/watches.html'
+    )
+
+
+def watches_details_page_view(request):
+    return render(
+        request,
+        template_name='watches/watches_details.html'
+    )
+
+
+def watches_valuation_page_view(request):
+    return render(
+        request,
+        template_name='watches/valuation.html'
+    )
+
+
 def about_page_view(request):
     return render(
         request,
