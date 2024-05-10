@@ -5,7 +5,7 @@
 <!--==============================
     Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper " data-bg-src="assets/img/breadcumb/breadcumb-bg.png">
+<div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg.png">
     <div class="container z-index-common">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">Продажа часов</h1>
@@ -25,7 +25,9 @@
 <section class="space-top space-extra-bottom">
     <div class="container">
         <div class="row">
-            {% include "includes/watches_list_card.html" %}
+            {% for watch in watches %}
+                {% include "includes/watches_list_card.html" %}
+            {% endfor %}
         </div>
         {% include "includes/pagination.html" %}
     </div>

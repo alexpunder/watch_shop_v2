@@ -59,15 +59,15 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="mega-hover course-img"><img src="assets/img/course/course-details-1.jpg" alt="girl"></div>
+                <div class="mega-hover course-img"><img src="/assets/img/course/course-details-1.jpg" alt="girl"></div>
                 <div class="course-category">
-                    <a href="course.html">Новая модель</a>
+                    <a href="course.html">{{ watch.condition.title }}</a>
                 </div>
-                <h2 class="course-title">OYSTER DAYTONA SPECIAL EDITION LEOPARD</h2>
-                <div class="course-review">В наличии<br>Референс: 116598SACO</div>
+                <h2 class="course-title">{{ watch.title }}</h2>
+                <div class="course-review">{{ watch.availability }}<br>Референс: {{ watch.reference }}</div>
                 <div class="row justify-content-between align-items-center gy-4">
                     <div class="col-auto">
-                        <div class="course-price"><span class="currency">$</span>74.000</div>
+                        <div class="course-price"><span class="currency">$</span>{{ watch.price }}</div>
                     </div>
                     <div class="col-auto">
                         <a class="vs-btn" href="contact.html">Интересует</a>

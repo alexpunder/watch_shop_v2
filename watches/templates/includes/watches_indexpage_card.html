@@ -1,20 +1,19 @@
 <div class="col-md-6 col-xl-12">
     <div class="course-style4">
         <div class="course-img">
-            <a href="course-details.html"><img class="w-100" src="assets/img/course/course-3-1.jpg" alt="Course Img"></a>
+            <a href="course-details.html"><img class="w-100" src="/assets/img/course/course-3-1.jpg" alt="Course Img"></a>
         </div>
         <div class="course-content">
-            <div class="course-category"><a href="course.html">Новая модель</a></div>
-            <h3 class="course-name"><a href="course-details.html">OYSTER DAYTONA SPECIAL EDITION LEOPARD</a></h3>
+            <div class="course-category"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.condition.title }}</a></div>
+            <h3 class="course-name"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.title }}</a></h3>
             <div class="course-meta">
-                <a><span class="total-student">В наличии</span></a>
-                <a></i><span class="total-student">Референс: 116598SACO</span></a>
+                <a><span class="total-student">{{ watch.availability.title }}</span></a>
+                <a></i><span class="total-student">Референс: {{ watch.reference }}</span></a>
             </div>
             <div class="course-price">
-                <span class="price">74.000 $</span>
+                <span class="price">{{ watch.price }} $</span>
             </div>
             <div class="course-bottom">
-                
             </div>
             <button type="button" class="vs-btn style2" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-check"></i>Оставить запрос</button>
         </div>

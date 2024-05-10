@@ -13,7 +13,7 @@ urlpatterns = [
     path('buyback', buyback_view_page, name='buyback'),
     path('watches', watches_page_view, name='watches'),
     path(
-        'watches-details',
+        'watches-details/<int:watch_id>/',
         watches_details_page_view,
         name='watches_details'
     ),

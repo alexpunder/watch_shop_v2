@@ -1,10 +1,16 @@
 from django.shortcuts import render
 
+from .models import Watch
+
 
 def index_page_view(request):
+    watches = Watch.objects.filter(
+        is_on_main=True
+    )
     return render(
         request,
-        template_name='index.html'
+        template_name='index.html',
+        context={'watches': watches}
     )
 
 
@@ -16,16 +22,20 @@ def buyback_view_page(request):
 
 
 def watches_page_view(request):
+    watches = Watch.objects.all()
     return render(
         request,
-        template_name='watches/watches.html'
+        template_name='watches/watches.html',
+        context={'watches': watches}
     )
 
 
-def watches_details_page_view(request):
+def watches_details_page_view(request, watch_id):
+    watch = Watch.objects.get(id=watch_id)
     return render(
         request,
-        template_name='watches/watches_details.html'
+        template_name='watches/watches_details.html',
+        context={'watch': watch}
     )
 
 
