@@ -19,30 +19,8 @@
                 <div class="col-lg-6 col-xl-5">
                     <div class="hero-content">
                         <h1 class="hero-title">Часовой бутик</h1>
-                        <p class="hero-text">Если возникли вопросы, можете оставить заявку и мы с радостью Вам перезвоним!</p>
-                        <form action="#" class="form-style3">
-                            <div class="form-group">
-                                <input type="text" name="name" id="name" placeholder="Имя">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="email" id="email" placeholder="Почтовый адрес">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="email" id="phone" placeholder="Номер для связи">
-                            </div>
-                            <div class="form-group">
-                                <select name="coursenames" id="coursenames">
-                                    <option selected disabled hidden>Select Course</option>
-                                    <option>Development</option>
-                                    <option>Ui Development</option>
-                                    <option>CMS Learning</option>
-                                    <option>Jamstack Master</option>
-                                </select>
-                            </div>
-                            <div class="form-btn">
-                                <button type="submit" class="vs-btn">Оставить заявку</button>
-                            </div>
-                        </form>
+                        <p class="hero-text">Место покупки и продажи элитных швейцарских часов.</p>
+                        {% include "includes/short_form.html" %}
                     </div>
                 </div>
                 <div class="col-lg-6 col-xl-7 wow fadeInUp align-self-end" data-wow-delay="0.4s">
@@ -52,7 +30,7 @@
                         <div class="media-style7">
                             <h3 class="media-title">Требуется оценка?</h3>
                             <p class="media-text">Заполните форму и мы непременно Вам ответим</p>
-                            <button type="button" class="vs-btn">Заполнить</button>
+                            <button type="button" class="vs-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Заполнить</button>
                         </div>
                     </div>
                 </div>

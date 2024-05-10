@@ -57,6 +57,20 @@ def faq_page_view(request):
     )
 
 
+def confidential_page_view(request):
+    return render(
+        request,
+        template_name='pages/confidential.html'
+    )
+
+
+def terms_page_view(request):
+    return render(
+        request,
+        template_name='pages/terms.html'
+    )
+
+
 def page_not_found(request, exception):
     return render(request, 'pages/404.html', status=404)
 

@@ -63,12 +63,12 @@
         </div>
         <div class="col-lg-12" data-wow-delay="0.4s">
             <div class="position-relative">
-                <form action="#" class="form-style2">
+                {% include "includes/extend_form.html" %}
+                {% comment %} <form action="#" class="form-style2">
                     <div class="form-inner">
                         <h3 class="form-title h3"><strong class="text-theme">Оставить заявку</strong></h3>
                         <h3 class="form-title h6">Ваши контактные данные</h3>
                         <div class="row">
-                            {% comment %} <span class="text-theme">50,000 students</span> {% endcomment %}
                             <div class="col-md-6 col-xl-6">
                                 <div class="form-group">
                                     <input type="text" name="name" id="name" placeholder="Имя">
@@ -98,7 +98,6 @@
                         </div>
                         <h3 class="form-title h6">Информация о часах</h3>
                         <div class="row">
-                            {% comment %} <span class="text-theme">50,000 students</span> {% endcomment %}
                             <div class="col-md-6 col-xl-6">
                                 <div class="form-group">
                                     <input type="text" name="name" id="name" placeholder="Бренд">
@@ -155,11 +154,16 @@
                         </div>
                         <div class="col-12 text-center">
                             <button type="button" class="vs-btn">Отправить</button>
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="custom-checkbox notice">
+                                <label for="wp-comment-cookies-consent"> Нажимая кнопку «Отправить», Вы соглашаетесь с <a href="{% url 'main:confidential' %}">политикой конфиденциальности</a> и <a href="{% url 'main:terms' %}">пользовательским соглашением</a>.</label>
+                            </div>
                             <a class="form-link" href="{% url 'main:faq' %}">Часто задаваемые вопросы</a>
                         </div>
                     </div>
                     <div class="vs-circle color2"></div>
-                </form>
+                </form> {% endcomment %}
             </div>
         </div>
     </div>
