@@ -4,7 +4,7 @@ CONDITIONS_CHOICES = (
     ('Идеальное', 'Идеальное'),
     ('Как новые', 'Как новые'),
     ('Коллекционное состояние', 'Коллекционное состояние'),
-    ('Новые', 'Новые'),
+    ('Новые', 'Новые'),  # TODO: поменять на "Абсолютно новые"
     ('Отличное', 'Отличное'),
     ('Хорошее', 'Хорошее'),
 )
@@ -87,6 +87,7 @@ class Watch(Base):
     special = models.ForeignKey(
         'Special',
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         verbose_name='Спецпредложения'
     )
@@ -150,6 +151,12 @@ class Watch(Base):
     reference = models.CharField(
         max_length=255,
         verbose_name='Референсный номер'
+    )
+    image = models.ImageField(
+        default=None,
+        null=True,
+        blank=True,
+        upload_to='watches_images'
     )
 
 

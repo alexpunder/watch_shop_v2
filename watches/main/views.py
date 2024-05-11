@@ -1,6 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
 from .models import Watch
+
+EXCLUDE_FIELDS = (
+    'id', 'title', 'is_on_main', 'condition', 'availability', 'special',
+    'for_who', 'shape', 'price', 'reference', 'image'
+)
 
 
 def index_page_view(request):
@@ -31,11 +37,20 @@ def watches_page_view(request):
 
 
 def watches_details_page_view(request, watch_id):
-    watch = Watch.objects.get(id=watch_id)
+    watch = get_object_or_404(Watch, id=watch_id)
+    data = {}
+
+    for field in watch._meta.fields:
+        if field.name not in EXCLUDE_FIELDS:
+            verbose_name = field.verbose_name
+            field_name = field.name
+            value = getattr(watch, field_name)
+            data[verbose_name] = value
+
     return render(
         request,
         template_name='watches/watches_details.html',
-        context={'watch': watch}
+        context={'watch': watch, 'data': data.items()}
     )
 
 

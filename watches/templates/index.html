@@ -157,6 +157,20 @@
     <!--==============================
       Course Area
     ==============================-->
+    <style>
+        .image-container-1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 240px; /* Ширина контейнера */
+            height: 148px; /* Высота контейнера */
+        }
+    
+        .image-container-1 img {
+            max-width: 100%; /* Максимальная ширина изображения */
+            max-height: 100%; /* Максимальная высота изображения */
+        }
+    </style>
     <section class="space-bottom">
         <div class="container">
             <div class="title-area text-center">
@@ -172,16 +186,13 @@
                 {% endfor %}
             </div>
             <div class="row vs-carousel wow fadeInUp slide-course-thumb" data-asnavfor=".slide-course-big" data-wow-delay="0.4s" data-slide-show="5" data-lg-slide-show="4" data-md-slide-show="3" data-sm-slide-show="2" data-xs-slide-show="2" data-focuson-select="true">
-                <div class="col-auto">
-                    <div class="course-style5">
-                        <div class="course-img"><img class="w-100" src="/assets/img/course/course-3-1.png" alt="image"></div>
+                {% for watch in watches %}
+                    <div class="col-auto">
+                        <div class="course-style3">
+                            <div class="image-container-1"><img style="max-width: 240px; max-height: 148px;" src="{{ watch.image.url }}" alt="image"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <div class="course-style5">
-                        <div class="course-img"><img class="w-100" src="/assets/img/course/course-3-1.png" alt="image"></div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

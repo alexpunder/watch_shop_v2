@@ -4,64 +4,28 @@
 
 <section class="course-details space-top space-extra-bottom">
     <div class="container">
-        <div class="row flex-row-reverse gx-50">
-            <div class="col-lg-6 col-lg-auto">
-                <div class="table-style3">
-                    <h5 class="border-title2">Характеристики</h5>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Тип:</td>
-                                <td>Классические</td>
-                            </tr>
-                            <tr>
-                                <td>Материал корпуса:</td>
-                                <td>18-к Желтое золото</td>
-                            </tr>
-                            <tr>
-                                <td>Водонепроницаемость:</td>
-                                <td>100 м</td>
-                            </tr>
-                            <tr>
-                                <td>Диаметр корпуса:</td>
-                                <td>40 мм</td>
-                            </tr>
-                            <tr>
-                                <td>Цвет циферблата:</td>
-                                <td>Леопардовый мотив с золотистым, 8 белых бриллантов</td>
-                            </tr>
-                            <tr>
-                                <td>Безель:</td>
-                                <td>Часы инкрустированы бриллиантами и сапфирами</td>
-                            </tr>
-                            <tr>
-                                <td>Тип механизма:</td>
-                                <td>Автоматический</td>
-                            </tr>
-                            <tr>
-                                <td>Функции:</td>
-                                <td>Часы, минуты, секунды</td>
-                            </tr>
-                            <tr>
-                                <td>Материал ремешка:</td>
-                                <td>Кожаный</td>
-                            </tr>
-                            <tr>
-                                <td>Комплектация:</td>
-                                <td>полный комплект</td>
-                            </tr>
-                            <tr>
-                                <td>Состояние:</td>
-                                <td>74.000 $, хорошее состояние</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="row gx-50">
             <div class="col-lg-6">
-                <div class="mega-hover course-img"><img src="/assets/img/course/course-details-1.jpg" alt="girl"></div>
+                <style>
+                    .image-container-3 {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 610; /* Ширина контейнера */
+                        height: 442; /* Высота контейнера */
+                    }
+                
+                    .image-container-3 img {
+                        max-width: 100%; /* Максимальная ширина изображения */
+                        max-height: 100%; /* Максимальная высота изображения */
+                    }
+                </style>
+                <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="{{ watch.image.url }}" alt="girl"></div>
                 <div class="course-category">
-                    <a href="course.html">{{ watch.condition.title }}</a>
+                    <a>{{ watch.condition.title }}</a>
+                    {% if watch.special %}
+                        <a>{{ watch.special }}</a>
+                    {% endif %}
                 </div>
                 <h2 class="course-title">{{ watch.title }}</h2>
                 <div class="course-review">{{ watch.availability }}<br>Референс: {{ watch.reference }}</div>
@@ -70,7 +34,7 @@
                         <div class="course-price"><span class="currency">$</span>{{ watch.price }}</div>
                     </div>
                     <div class="col-auto">
-                        <a class="vs-btn" href="contact.html">Интересует</a>
+                        <button type="button" class="vs-btn" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;&nbsp;Интересует</button>
                     </div>
                 </div>
                 <h5 class="border-title2 space-extra-top">Для приобретения часов необходимо:</h5>
@@ -80,6 +44,21 @@
                         <li>согласовать время визита</li>
                         <li>выбрать модели которые хотите увидеть</li>
                     </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lg-auto">
+                <div class="table-style3">
+                    <h5 class="border-title2">Характеристики</h5>
+                    <table>
+                        <tbody>
+                            {% for key, value in data %}
+                                <tr>
+                                    <td>{{ key }}:</td>
+                                    <td>{{ value }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
