@@ -120,38 +120,41 @@
                         <div class="header-btns">
                             <button type="button" class="searchBoxTggler"><i class="far fa-search"></i></button>
                             <button type="button" class="vs-btn style6" data-bs-toggle="modal" data-bs-target="#exampleModal1">Заказать звонок</button>
-                            <!-- Short Modal -->
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            {% include "includes/short_form.html" %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Extend Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            {% include "includes/extend_form.html" %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Short Watches Card Modal -->
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            {% include "includes/short_form.html" %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+      Modal
+    ==============================-->
+    <!-- Short Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {% include "forms/short_form.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Extend Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {% include "forms/extend_buyback_form.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Short Watches Card Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {% include "forms/short_form.html" %}
                 </div>
             </div>
         </div>

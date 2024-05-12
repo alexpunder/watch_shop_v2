@@ -20,7 +20,7 @@
                     <div class="hero-content">
                         <h1 class="hero-title">Часовой бутик</h1>
                         <p class="hero-text">Место покупки и продажи элитных швейцарских часов.</p>
-                        {% include "includes/short_form.html" %}
+                        {% include "forms/short_form_index_page.html" %}
                     </div>
                 </div>
                 <div class="col-lg-6 col-xl-7 wow fadeInUp align-self-end" data-wow-delay="0.4s">
@@ -189,7 +189,7 @@
                 {% for watch in watches %}
                     <div class="col-auto">
                         <div class="course-style3">
-                            <div class="image-container-1"><img style="max-width: 240px; max-height: 148px;" src="{{ watch.image.url }}" alt="image"></div>
+                            <div class="image-container-1"><img src="{{ watch.image.url }}" alt="image"></div>
                         </div>
                     </div>
                 {% endfor %}

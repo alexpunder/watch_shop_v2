@@ -1,9 +1,12 @@
 <form action="#" class="form-style2">
+    {% csrf_token %}
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть" style="position: absolute; top: 15px; right: 15px; background-color: transparent; border: none; font-size: 30px; padding: 20px;">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <div class="form-inner">
         <h3 class="form-title h3"><strong class="text-theme">Оставить заявку</strong></h3>
         <h3 class="form-title h6">Ваши контактные данные</h3>
         <div class="row">
-            {% comment %} <span class="text-theme">50,000 students</span> {% endcomment %}
             <div class="col-md-6 col-xl-6">
                 <div class="form-group">
                     <input type="text" name="name" id="name" placeholder="Имя">

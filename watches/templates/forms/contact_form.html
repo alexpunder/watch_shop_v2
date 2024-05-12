@@ -1,0 +1,13 @@
+<form method="post" action="{% url "main:contacts" %}" class="form-style5">
+    {% csrf_token %}
+    <div class="vs-circle"></div>
+    <h3 class="form-title">Обратная связь</h3>
+    <p class="form-text">По всем вопросам, пожеланиям и предложениям можете воспользоваться формой.</p>
+    {% for field in form %}
+        <div class="form-group">
+            {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    <button class="vs-btn">Отправить</button>
+</form>

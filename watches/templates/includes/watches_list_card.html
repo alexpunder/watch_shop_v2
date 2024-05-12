@@ -1,23 +1,13 @@
-<style>
-    .image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 410px; /* Ширина контейнера */
-        height: 330px; /* Высота контейнера */
-    }
-
-    .image-container img {
-        max-width: 100%; /* Максимальная ширина изображения */
-        max-height: 100%; /* Максимальная высота изображения */
-    }
-</style>
-
 <div class="col-sm-6 col-xl-4">
     <div class="course-style1 has-border">
         <div class="image-container">
-            <a href="{% url 'main:watches_details' watch.id %}"><img style="max-width: 410px; max-height: 330px;" src="{{ watch.image.url }}" alt="Course Img"></a>
-            <div class="course-category">{{ watch.condition.title }}</div>
+            <a href="{% url 'main:watches_details' watch.id %}"><img src="{{ watch.image.url }}" alt="Course Img"></a>
+            <div class="course-category">
+                {{ watch.condition.title }}
+                {% if watch.special %}
+                    <br>{{ watch.special }}
+                {% endif %}
+            </div>
             <button type="button" class="vs-btn style2" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-check"></i>Оставить запрос</button>
         </div>
         <div class="course-content">

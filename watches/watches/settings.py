@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,6 +18,21 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+
+LANGUAGE_CODE = 'ru-RU'
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'RU'
+PHONENUMBER_DEFAULT_FORMAT = 'NATIONAL'
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main.apps.MainConfig',
+
+    # Other apps
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [

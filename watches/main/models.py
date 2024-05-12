@@ -1,52 +1,9 @@
 from django.db import models
+from django.urls import reverse
 
-CONDITIONS_CHOICES = (
-    ('Идеальное', 'Идеальное'),
-    ('Как новые', 'Как новые'),
-    ('Коллекционное состояние', 'Коллекционное состояние'),
-    ('Новые', 'Новые'),  # TODO: поменять на "Абсолютно новые"
-    ('Отличное', 'Отличное'),
-    ('Хорошее', 'Хорошее'),
-)
-
-AVAILABILITY_CHOICES = (
-    ('В наличии', 'В наличии'),
-    ('Уточнить у менеджера', 'Уточнить у менеджера'),
-)
-
-SPECIALS_CHOICES = (
-    ('Grand комплектация', 'Grand комплектация'),
-    ('Limited editions', 'Limited editions'),
-    ('Special editions', 'Special editions'),
-    ('Акция', 'Акция'),
-    ('Новинка', 'Новинка'),
-    ('Тюнинг', 'Тюнинг'),
-)
-
-FOR_WHO_CHOICES = (
-    ('Не задано', 'Не задано'),
-    ('Мужские', 'Мужские'),
-    ('Женские', 'Женские'),
-    ('Унисекс', 'Унисекс'),
-)
-
-SHAPES_CHOICES = (
-    ('Овальная', 'Овальная'),
-    ('Круглая', 'Круглая'),
-    ('Квадратная', 'Квадратная'),
-    ('Бочка', 'Бочка'),
-)
-
-MATERIALS_CHOICES = (
-    ('Желтое золото', 'Желтое золото'),
-    ('Розовое золото', 'Розовое золото'),
-    ('Белое золото', 'Белое золото'),
-    ('Платина', 'Платина'),
-    ('Титан', 'Титан'),
-    ('Сталь', 'Сталь'),
-    ('Карбон', 'Карбон'),
-    ('Керамика', 'Керамика'),
-    ('Прочие материалы', 'Прочие материалы'),
+from watches.constants import (
+    CONDITIONS_CHOICES, AVAILABILITY_CHOICES, SPECIALS_CHOICES,
+    FOR_WHO_CHOICES, SHAPES_CHOICES, MATERIALS_CHOICES, MECHANISM_CHOICES
 )
 
 
@@ -63,19 +20,26 @@ class Watch(Base):
     title = models.CharField(
         max_length=255,
         unique=True,
-        verbose_name='Название часов'
+        verbose_name='Название часов',
+        help_text=(
+            'Уникальное, обязательное поле.'
+        )
     )
     is_on_main = models.BooleanField(
         verbose_name='Выводить ли на главной?'
     )
-    condition = models.CharField(
+    condition = models.ForeignKey(
+        'ConditionChoice',
         max_length=255,
-        choices=CONDITIONS_CHOICES,
+        on_delete=models.SET_DEFAULT,
+        default=1,
         verbose_name='Состояние'
     )
-    availability = models.CharField(
+    availability = models.ForeignKey(
+        'AvailabilityChoice',
         max_length=255,
-        choices=AVAILABILITY_CHOICES,
+        on_delete=models.SET_DEFAULT,
+        default=1,
         verbose_name='Наличие'
     )
     brand = models.ForeignKey(
@@ -107,56 +71,185 @@ class Watch(Base):
         'Material',
         on_delete=models.SET_DEFAULT,
         default=1,
-        verbose_name='Материал корпуса'
+        verbose_name='Материал корпуса',
+        help_text='Для фильтра на странице со списком часов.'
+    )
+    material_alt = models.CharField(
+        max_length=255,
+        verbose_name='Альтернативное описание материала корпуса',
+        help_text=(
+            'Для лучшего отображения на детальной странице часов. '
+            'Обязательное поле.'
+        )
     )
     price = models.PositiveSmallIntegerField(
         verbose_name='Цена часов'
     )
     type = models.CharField(
         max_length=255,
-        verbose_name='Тип'
+        null=True,
+        blank=True,
+        verbose_name='Тип',
+        help_text=(
+            'Например: "Классические". '
+            'Необязательное поле.'
+        )
     )
     waterproof = models.CharField(
         max_length=255,
-        verbose_name='Водонепроницаемость'
+        null=True,
+        blank=True,
+        verbose_name='Водонепроницаемость',
+        help_text=(
+            'Указывать в местрах. Например: "50 м". '
+            'Необязательное поле.'
+        )
     )
     diameter = models.CharField(
         max_length=255,
-        verbose_name='Диаметр корпуса'
+        null=True,
+        blank=True,
+        verbose_name='Диаметр корпуса',
+        help_text=(
+            'Указывать в миллиметрах. Например: "37 мм". '
+            'Необязательное поле.'
+        )
     )
     color = models.CharField(
         max_length=255,
-        verbose_name='Цвет циферблата'
+        null=True,
+        blank=True,
+        verbose_name='Цвет циферблата',
+        help_text=(
+            'Необязательное поле.'
+        )
     )
     bezel = models.CharField(
         max_length=255,
-        verbose_name='Безель'
+        null=True,
+        blank=True,
+        verbose_name='Безель',
+        help_text=(
+            'Внешнее поворотное кольцо вокруг циферблата часов. '
+            'Необязательное поле.'
+        )
+    )
+    glass = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Стекло',
+        help_text=(
+            'Необязательное поле.'
+        )
+    )
+    reserve = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Запас хода',
+        help_text=(
+            'Необязательное поле.'
+        )
+    )
+    caliber = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Калибр',
+        help_text=(
+            'Необязательное поле.'
+        )
     )
     mechanism = models.CharField(
         max_length=255,
-        verbose_name='Механизм часов'
+        choices=MECHANISM_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name='Механизм часов',
+        help_text=(
+            'Механические, автоматические и кварцевые. '
+            'Необязательное поле.'
+        )
     )
     functions = models.CharField(
         max_length=255,
-        verbose_name='Функции'
+        null=True,
+        blank=True,
+        verbose_name='Функции',
+        help_text=(
+            'Например: "Дата, часы, минуты, секунды". '
+            'Необязательное поле.'
+        )
     )
     strap = models.CharField(
         max_length=255,
-        verbose_name='Материал ремешка'
+        null=True,
+        blank=True,
+        verbose_name='Материал ремешка',
+        help_text=(
+            'Например: "Браслет из желтого золота 18к". '
+            'Необязательное поле.'
+        )
     )
     equipment = models.CharField(
         max_length=255,
-        verbose_name='Комплектация'
+        null=True,
+        blank=True,
+        verbose_name='Комплектация',
+        help_text=(
+            'Например: "Полный комплект" или "Коробка". '
+            'Необязательное поле.'
+        )
+    )
+    date_issue = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Дата выпуска',
+        help_text=(
+            'Необязательное поле.'
+        )
     )
     reference = models.CharField(
         max_length=255,
-        verbose_name='Референсный номер'
+        unique=True,
+        verbose_name='Референсный номер',
+        help_text=(
+            'Уникальное, обязательное поле.'
+        )
     )
     image = models.ImageField(
         default=None,
         null=True,
         blank=True,
-        upload_to='watches_images'
+        upload_to='watches_images',
+        help_text=(
+            'Необязательное поле, но очень желательное.'
+        )
+    )
+
+    def get_absolute_url(self):
+        return reverse(
+            'main:watches_details', kwargs={'watch_id': self.pk}
+        )
+
+
+class ConditionChoice(Base):
+    title = models.CharField(
+        max_length=255,
+        choices=CONDITIONS_CHOICES,
+        unique=True,
+        verbose_name='Состояние'
+    )
+
+
+class AvailabilityChoice(Base):
+    title = models.CharField(
+        max_length=255,
+        choices=AVAILABILITY_CHOICES,
+        unique=True,
+        verbose_name='Наличие'
     )
 
 

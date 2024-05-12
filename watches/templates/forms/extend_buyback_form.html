@@ -1,0 +1,125 @@
+<form method="post" action="{% url 'main:buyback' %}" class="form-style2" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-inner">
+        <h3 class="form-title h3"><strong class="text-theme">Оставить заявку</strong></h3>
+        <h3 class="form-title h6">Ваши контактные данные</h3>
+        {% comment %} <div class="row">
+            {% for field in buyback_form %}
+                <div class="col-md-6 col-xl-6">
+                    <div class="form-group">
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div> {% endcomment %}
+        <div class="row">
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_name"></label>
+                    <input type="text" name="name" placeholder="Имя" maxlength="56" required id="id_name" value="{{ request.POST.name }}">
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_phone"></label>
+                    <input type="tel" name="phone" placeholder="Номер для связи" required id="id_phone" value="{{ request.POST.phone }}">
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_communication_method"></label>
+                    <select name="communication_method" id="id_communication_method">
+                        <option selected hidden disabled>Предпочитаемый способ связи</option>
+                        <option value="Звонок" {% if request.POST.communication_method == 'Звонок' %} selected {% endif %}>Звонок</option>
+                        <option value="На почту" {% if request.POST.communication_method == 'На почту' %} selected {% endif %}>На почту</option>
+                        <option value="Telegram" {% if request.POST.communication_method == 'Telegram' %} selected {% endif %}>Telegram</option>
+                        <option value="WhatsUp" {% if request.POST.communication_method == 'WhatsUp' %} selected {% endif %}>WhatsUp</option>
+                        <option value="Viber" {% if request.POST.communication_method == 'Viber' %} selected {% endif %}>Viber</option>
+                      </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_email"></label>
+                    <input type="email" name="email" placeholder="Почта" maxlength="255" required id="id_email" value="{{ request.POST.email }}">
+                </div>
+            </div>
+        </div>
+        <h3 class="form-title h6">Информация о часах</h3>
+        <div class="row">
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_brand"></label>
+                    <input type="text" name="brand" placeholder="Бренд" maxlength="255" required id="id_brand" value="{{ request.POST.brand }}">
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_model"></label>
+                    <input type="text" name="model" placeholder="Модель" maxlength="255" required id="id_model" value="{{ request.POST.model }}">
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_year"></label>
+                    <input type="text" name="year" placeholder="Год" maxlength="255" required id="id_year" value="{{ request.POST.year }}">
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_price"></label>
+                    <input type="text" name="price" placeholder="Цена" maxlength="255" required id="id_price" value="{{ request.POST.price }}">
+                </div>
+            </div>
+        </div>
+        <h3 class="form-title h6">Состояние и комплектация</h3>
+        <div class="row">
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_condition"></label>
+                    <select name="condition" id="id_condition">
+                        <option selected hidden disabled>Состояние</option>
+                        <option value="Идеальное" {% if request.POST.condition == 'Идеальное' %} selected {% endif %}>Идеальное</option>
+                        <option value="Новое" {% if request.POST.condition == 'Новое' %} selected {% endif %}>Новое</option>
+                        <option value="Естественные следы носки" {% if request.POST.condition == 'Естественные следы носки' %} selected {% endif %}>Естественные следы носки</option>
+                        <option value="Есть дефекты" {% if request.POST.condition == 'Есть дефекты' %} selected {% endif %}>Есть дефекты</option>
+                        <option value="Требуется ремонт" {% if request.POST.condition == 'Требуется ремонт' %} selected {% endif %}>Требуется ремонт</option>
+                      </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <label for="id_equipment"></label>
+                    <select name="equipment" id="id_equipment">
+                        <option selected hidden disabled>Комплектация</option>
+                        <option value="С упаковкой" {% if request.POST.equipment == 'С упаковкой' %} selected {% endif %}>С упаковкой</option>
+                        <option value="Без упаковки" {% if request.POST.equipment == 'Без упаковки' %} selected {% endif %}>Без упаковки</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+        <h3 class="form-title h6">Выберите фото часов</h3>
+        <div class="row">
+            <div class="col-md-6 col-xl-12">
+                <div class="form-group">
+                    <label class="custom-file-upload">
+                        <input type="file" style="display: none;" name="images" multiple accept="image/*" required id="id_images" />
+                        <i class="fas fa-cloud-upload-alt fa-lg"></i> Нажмите, чтобы загрузить изображение
+                    </label>
+                    <label for="id_images">Возможные форматы: png, jpg, jpeg</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-center">
+            <button class="vs-btn">Отправить</button>
+        </div>
+        <div class="col-12 text-center">
+            <div class="custom-checkbox notice">
+                <label for="wp-comment-cookies-consent"> Нажимая кнопку «Отправить», Вы соглашаетесь с <a href="{% url 'main:confidential' %}">политикой конфиденциальности</a> и <a href="{% url 'main:terms' %}">пользовательским соглашением</a>.</label>
+            </div>
+            <a class="form-link" href="{% url 'main:faq' %}">Часто задаваемые вопросы</a>
+        </div>
+    </div>
+    <div class="vs-circle color2"></div>
+</form>

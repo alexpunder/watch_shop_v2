@@ -1,28 +1,14 @@
 <div class="col-md-6 col-xl-12">
     <div class="course-style4">
-        <style>
-            .image-container-2 {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 615px; /* Ширина контейнера */
-                height: 527px; /* Высота контейнера */
-            }
-        
-            .image-container-2 img {
-                max-width: 100%; /* Максимальная ширина изображения */
-                max-height: 100%; /* Максимальная высота изображения */
-            }
-        </style>
-        <div class="image-container-2">
-            <a href="{% url 'main:watches_details' watch.id %}"><img style="max-width: 615px; max-height: 527px;" src="{{ watch.image.url }}" alt="Course Img"></a>
+        <div class="image-container">
+            <a href="{% url 'main:watches_details' watch.id %}"><img src="{{ watch.image.url }}" alt="Course Img"></a>
         </div>
         <div class="course-content">
             <div class="course-category"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.condition.title }}</a></div>
             {% if watch.special %}
-                <div class="course-category"><a>{{ watch.special }}</a></div>
+                <div class="course-category"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.special }}</a></div>
             {% endif %}
-            <h3 class="course-name"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.title }}</a></h3>
+            <h3 class="course-name"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.brand.title }} {{ watch.title }}</a></h3>
             <div class="course-meta">
                 <a><span class="total-student">{{ watch.availability.title }}</span></a>
                 <a></i><span class="total-student">Референс: {{ watch.reference }}</span></a>

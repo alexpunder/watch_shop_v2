@@ -1,6 +1,9 @@
 from django.contrib import admin
 
-from .models import Watch, Brand, Special, Shape, ForWho, Material
+from .models import (
+    Watch, Brand, Special, Shape, ForWho, Material,
+    ConditionChoice, AvailabilityChoice
+)
 
 
 @admin.register(Watch)
@@ -10,6 +13,16 @@ class WatchAdmin(admin.ModelAdmin):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(AvailabilityChoice)
+class AvailabilityChoiceAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ConditionChoice)
+class ConditionChoiceAdmin(admin.ModelAdmin):
     pass
 
 
