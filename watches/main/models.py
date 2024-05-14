@@ -1,9 +1,11 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinValueValidator
 
 from watches.constants import (
     CONDITIONS_CHOICES, AVAILABILITY_CHOICES, SPECIALS_CHOICES,
-    FOR_WHO_CHOICES, SHAPES_CHOICES, MATERIALS_CHOICES, MECHANISM_CHOICES
+    FOR_WHO_CHOICES, SHAPES_CHOICES, MATERIALS_CHOICES, MECHANISM_CHOICES,
+    MIN_WATCH_PRICE
 )
 
 
@@ -71,18 +73,24 @@ class Watch(Base):
         'Material',
         on_delete=models.SET_DEFAULT,
         default=1,
-        verbose_name='Материал корпуса',
+        verbose_name='Категория материала корпуса',
         help_text='Для фильтра на странице со списком часов.'
     )
     material_alt = models.CharField(
         max_length=255,
-        verbose_name='Альтернативное описание материала корпуса',
+        verbose_name='Материал корпуса',
         help_text=(
             'Для лучшего отображения на детальной странице часов. '
             'Обязательное поле.'
         )
     )
     price = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueValidator(
+                MIN_WATCH_PRICE,
+                message=f'Цена не может быть ниже {MIN_WATCH_PRICE}'
+            )
+        ],
         verbose_name='Цена часов'
     )
     type = models.CharField(
@@ -101,7 +109,7 @@ class Watch(Base):
         blank=True,
         verbose_name='Водонепроницаемость',
         help_text=(
-            'Указывать в местрах. Например: "50 м". '
+            'Указывать в метрах. Например: "50 м". '
             'Необязательное поле.'
         )
     )
@@ -225,9 +233,15 @@ class Watch(Base):
         blank=True,
         upload_to='watches_images',
         help_text=(
-            'Необязательное поле, но очень желательное.'
+            'Необязательное поле, но очень желательное. '
+            'Рекомендуемы размер: 400х400, формат: .webp'
         )
     )
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Часы'
+        verbose_name_plural = 'Часы'
 
     def get_absolute_url(self):
         return reverse(
@@ -243,6 +257,11 @@ class ConditionChoice(Base):
         verbose_name='Состояние'
     )
 
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Состояние'
+        verbose_name_plural = 'Состояния'
+
 
 class AvailabilityChoice(Base):
     title = models.CharField(
@@ -252,6 +271,11 @@ class AvailabilityChoice(Base):
         verbose_name='Наличие'
     )
 
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Наличие'
+        verbose_name_plural = 'Наличие'
+
 
 class Brand(Base):
     title = models.CharField(
@@ -259,6 +283,11 @@ class Brand(Base):
         unique=True,
         verbose_name='Бренд'
     )
+
+    class Meta:
+        ordering = ['-title']
+        verbose_name = 'Бренд'
+        verbose_name_plural = 'Бренды'
 
 
 class Special(Base):
@@ -269,6 +298,11 @@ class Special(Base):
         verbose_name='Спецпредложения'
     )
 
+    class Meta:
+        ordering = ['-title']
+        verbose_name = 'Спецпредложение'
+        verbose_name_plural = 'Спецпредложения'
+
 
 class ForWho(Base):
     title = models.CharField(
@@ -277,6 +311,11 @@ class ForWho(Base):
         unique=True,
         verbose_name='Для кого'
     )
+
+    class Meta:
+        ordering = ['-title']
+        verbose_name = 'Для кого'
+        verbose_name_plural = 'Для кого'
 
 
 class Shape(Base):
@@ -287,6 +326,11 @@ class Shape(Base):
         verbose_name='Форма корпуса'
     )
 
+    class Meta:
+        ordering = ['-title']
+        verbose_name = 'Форма корпуса'
+        verbose_name_plural = 'Формы корпусов'
+
 
 class Material(Base):
     title = models.CharField(
@@ -295,3 +339,8 @@ class Material(Base):
         unique=True,
         verbose_name='Материал корпуса'
     )
+
+    class Meta:
+        ordering = ['-title']
+        verbose_name = 'Материал корпуса'
+        verbose_name_plural = 'Материалы корпусов'

@@ -53,13 +53,13 @@
             <div class="col-md-6 col-xl-6">
                 <div class="form-group">
                     <label for="id_year"></label>
-                    <input type="text" name="year" placeholder="Год" maxlength="255" required id="id_year" value="{{ request.POST.year }}">
+                    <input type="text" name="year" placeholder="Год покупки" maxlength="255" id="id_year" value="{{ request.POST.year }}">
                 </div>
             </div>
             <div class="col-md-6 col-xl-6">
                 <div class="form-group">
                     <label for="id_price"></label>
-                    <input type="text" name="price" placeholder="Цена" maxlength="255" required id="id_price" value="{{ request.POST.price }}">
+                    <input type="text" name="price" placeholder="Желаемая сумма (руб.)" maxlength="255" id="id_price" value="{{ request.POST.price }}">
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <h3 class="form-title h6">Выберите фото часов</h3>
+        <h3 class="form-title h6">Изображения</h3>
         <div class="row">
             <div class="col-md-6 col-xl-12">
                 <div class="form-group">
@@ -97,6 +97,7 @@
                         <input type="file" style="display: none;" name="images" multiple accept="image/*" required id="id_images" />
                         <i class="fas fa-cloud-upload-alt fa-lg"></i> Нажмите, чтобы прикрепить <strong>фото часов</strong> и <strong>документы</strong> на них. 
                     </label>
+                    <label for="id_images">Загрузите хотя бы одно изображение</label>
                     <label for="id_images">Возможные форматы: png, jpg, jpeg, heic, heiv</label>
                 </div>
             </div>
