@@ -1,8 +1,5 @@
-<form method="post" action="{% url 'forms:short_index' %}" class="form-style3">
+<form method="post" action="{% url 'forms:footer_form' %}" class="form-style2">
     {% csrf_token %}
-    <div class="form-inner">
-        <h5 class="form-text text-center">Оставьте заявку и наши специалисты непременно свяжутся с Вами в ближайшее время.</h3>
-    </div>
     <div class="form-group">
         <label for="id_name"></label>
         <input type="text" name="name" placeholder="Имя" maxlength="56" required id="id_name" value="{{ request.POST.name }}">
@@ -15,7 +12,5 @@
         <label for="id_text"></label>
         <input type="text" name="text" placeholder="Ваше сообщение" maxlength="56" required id="id_text" value="{{ request.POST.text }}">
     </div>
-    <div class="form-btn">
-        <button type="submit" class="vs-btn">Отправить</button>
-    </div>
+    <button type="submit" class="vs-btn">Отправить</button>
 </form>

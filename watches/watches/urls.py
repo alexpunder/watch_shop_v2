@@ -9,6 +9,7 @@ handler500 = 'main.views.server_error'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('', include('forms.urls')),
 ]
 
 

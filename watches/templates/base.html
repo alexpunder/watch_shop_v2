@@ -51,18 +51,17 @@
         </div>
     </div>
 
-    {% include "includes/header.html" %}
-
     {% if messages %}
-          <div>
-              {% for message in messages %}
-                  <div class="alert {{ message.tags }} text-center alert-dismissible fade show" role="alert">
-                      <strong>{{ message }}</strong>
-                  </div>
-              {% endfor %}
-          </div>
+        <div>
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} text-center alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
 
+    {% include "includes/header.html" %}
     {% block content %}{% endblock content %}
     {% include "includes/footer.html" %}
 
@@ -84,6 +83,14 @@
     <!-- Main Js File -->
     <script src="/assets/js/main.js"></script>
 
+    <script>
+        $('#exampleModal2').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var watchName = button.data('watch-name') // Extract info from data-* attributes
+            var modal = $(this)
+            modal.find('#id_hiden_info').val(watchName)
+        })
+    </script>
 
 </body>
 

@@ -11,9 +11,6 @@
                         <div class="vs-widget-about">
                             <p class="footer-info"><i class="fal fa-phone-alt"></i><a class="text-inherit" href="tel:+79608889293">+7 (960) 888-92-93</a></p>
                             <p class="footer-info"><i class="fal fa-envelope"></i><a class="text-inherit" href="mailto:yellow.watch24@gmail.com">yellow.watch24@gmail.com</a></p>
-                            {% comment %} <p class="footer-info"><i class="fab fa-telegram-plane"></i><a class="text-inherit" href="https://t.me/ant_toys" title="telegram">Telegram</a></p>
-                            <p class="footer-info"><i class="fab fa-whatsapp"></i><a class="text-inherit" href="https://wa.me/+79608889293" title="whatsapp">Whatsapp</a></p>
-                            <p class="footer-info"><i class="fab fa-instagram"></i><a class="text-inherit" href="https://www.instagram.com/rostovtsev_ant/" title="instagram">Instagram</a></p> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -35,13 +32,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="widget footer-widget">
                         <h4 class="widget_title">Остались вопросы? Напиши нам!</h4>
-                        {% comment %} <p class="mailchimp-text">Subscribe to our newsletter. Get academic updates to news and events.</p> {% endcomment %}
-                        <form class="newsletter-form">
-                            <input class="form-control" type="text" placeholder="Имя" required="">
-                            <input class="form-control" type="phone" placeholder="Номер для связи" required="">
-                            <input class="form-control" type="text" placeholder="Текст сообщения" required="">
-                            <button type="submit" class="vs-btn">Отправить</button>
-                        </form>
+                        {% include "forms/footer_form.html" %}
                     </div>
                 </div>
             </div>

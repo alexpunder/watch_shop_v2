@@ -4,7 +4,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
 from .models import Watch
-from .forms import ShortMainForm, ShortFeedbackForm, ExtendBuybackForm
+from .forms import ExtendBuybackForm
+from forms.forms import FeedbackForm
 
 EXCLUDE_FIELDS = (
     'id', 'title', 'is_on_main', 'condition', 'availability', 'special',
@@ -16,34 +17,11 @@ def index_page_view(request):
     watches = Watch.objects.filter(
         is_on_main=True
     )
-    if request.method == 'POST':
-        form = ShortMainForm(request.POST)
-        if form.is_valid():
-            messages.success(
-                request,
-                message=(
-                    'Заявка успешно отправлена!'
-                    'В ближайшее время с Васм свяжется наш специалист.'
-                )
-            )
-            return HttpResponseRedirect(
-                request.META.get('HTTP_REFERER')
-            )
-        else:
-            messages.warning(
-                request,
-                message=(
-                    'Ошибка заполнения формы: '
-                    f'{form.errors.as_text()}'
-                )
-            )
-    else:
-        form = ShortMainForm()
 
     return render(
         request,
         template_name='index.html',
-        context={'watches': watches, 'form': form},
+        context={'watches': watches},
     )
 
 
@@ -51,6 +29,7 @@ def buyback_view_page(request):
     if request.method == 'POST':
         form = ExtendBuybackForm(request.POST, request.FILES)
         if form.is_valid():
+            form.save()
             messages.success(
                 request,
                 message=(
@@ -123,12 +102,13 @@ def about_page_view(request):
 
 def contacts_page_view(request):
     if request.method == 'POST':
-        form = ShortFeedbackForm(request.POST)
+        form = FeedbackForm(request.POST)
         if form.is_valid():
+            form.save()
             messages.success(
                 request,
                 message=(
-                    'Вашее сообщение успешно отправлено. '
+                    'Ваше сообщение успешно отправлено. '
                     'Благодарим за обратную связь!'
                 )
             )
@@ -144,7 +124,7 @@ def contacts_page_view(request):
                 )
             )
     else:
-        form = ShortFeedbackForm()
+        form = FeedbackForm()
 
     return render(
         request,

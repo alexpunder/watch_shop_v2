@@ -72,30 +72,35 @@
 <!--==============================
   Header Area
 ==============================-->
-<header class="vs-header header-layout1">
-    <div class="header-top">
-        <div class="container">
-            <div class="row justify-content-between align-items-center gx-50">
-                <div class="col d-none d-xl-block">
-                    <div class="header-links">
-                        <ul>
-                            <li><i class="fas fa-phone-alt"></i>Телефон: <a href="tel:+79608889293">+7 (960) 888-92-93</a></li>
-                            <li><i class="fas fa-envelope"></i>Почта: <a href="mailto:yellow.watch24@gmail.com">yellow.watch24@gmail.com</a></li>
-                        </ul>
-                    </div>
+{% with request.resolver_match.view_name as view_name %}
+<div class="header-top">
+    <div class="container">
+        <div class="row justify-content-between align-items-center gx-50">
+            <div class="col d-none d-xl-block">
+                <div class="header-links">
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i>Телефон: <a href="tel:+79608889293">+7 (960) 888-92-93</a></li>
+                        <li><i class="fas fa-envelope"></i>Почта: <a href="mailto:yellow.watch24@gmail.com">yellow.watch24@gmail.com</a></li>
+                    </ul>
                 </div>
-                <div class="col col-xl-auto d-none d-md-block">
-                </div>
-                <div class="col-md-auto text-center">
-                    <div class="header-social">
-                        <a href="https://t.me/ant_toys" title="telegram"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="https://wa.me/+79608889293" title="whatsapp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/rostovtsev_ant/" title="instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
+            </div>
+            <div class="col col-xl-auto d-none d-md-block">
+            </div>
+            <div class="col-md-auto text-center">
+                <div class="header-social">
+                    <a href="https://t.me/ant_toys" title="telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://wa.me/+79608889293" title="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/rostovtsev_ant/" title="instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+    {% if view_name == 'main:index' %}
+        <header class="vs-header header-layout3">
+    {% else %}
+        <header class="vs-header header-layout1">
+    {% endif %}
     <div class="sticky-wrapper">
         <div class="sticky-active">
             <div class="container position-relative z-index-common">
@@ -126,37 +131,6 @@
             </div>
         </div>
     </div>
-    <!--==============================
-      Modal
-    ==============================-->
-    <!-- Short Modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    {% include "forms/short_form.html" %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Extend Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    {% include "forms/extend_buyback_form.html" %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Short Watches Card Modal -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    {% include "forms/short_form.html" %}
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include "modals/modal.html" %}
+{% endwith %}
 </header>
