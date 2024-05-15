@@ -20,7 +20,7 @@
 <section class="space-extra-top space-extra-bottom">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-xl-7 text-center text-xl-start">
+            <div class="col-xl-12 text-center text-xl-start">
                 <div class="row gx-80 gy-xl-4 mb-4 mb-xl-0">
                     <div class="col-md-6 col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="media-style4">
@@ -46,7 +46,7 @@
                     <div class="col-md-6 col-xl-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="media-style4">
                             <div class="media-icon"><img src="/assets/img/icon/training-icon-1-2.svg" alt=""></div>
-                            <h5 class="media-title">Быстрота</h5>
+                            <h5 class="media-title">Скорость</h5>
                             <p>Мы предлагаем быстрый выкуп и расчет в день обращения, делая процесс максимально быстрым для Вас.</p>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-5 wow fadeInUp" data-wow-delay="0.4s">
+            {% comment %} <div class="col-xl-5 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="position-relative">
                     <form action="#" class="form-style2">
                         <div class="form-inner">
@@ -107,6 +107,11 @@
                         <div class="vs-circle color2"></div>
                     </form>
                 </div>
+            </div> {% endcomment %}
+        </div>
+        <div class="col-lg-12" data-wow-delay="0.4s">
+            <div class="position-relative">
+                {% include "forms/extend_valuation_form.html" %}
             </div>
         </div>
     </div>

@@ -21,10 +21,6 @@ class Base(models.Model):
     phone = PhoneNumberField(
         verbose_name='Номер телефона'
     )
-    email = models.EmailField(
-        max_length=255,
-        verbose_name='Почта'
-    )
     text = models.TextField(
         blank=True,
         null=True,
@@ -83,7 +79,11 @@ class Feedback(Base):
         )
 
 
-class BuybackWatch(Base):
+class BuybackWatches(Base):
+    email = models.EmailField(
+        max_length=255,
+        verbose_name='Почта'
+    )
     communication_method = models.CharField(
         max_length=255,
         blank=True,
@@ -144,19 +144,19 @@ class BuybackWatch(Base):
     )
 
     class Meta:
-        verbose_name = 'Выкуп/оценка часов'
-        verbose_name_plural = 'Выкуп/оценка часов'
+        verbose_name = 'Выкуп часов'
+        verbose_name_plural = 'Выкуп часов'
 
     def __str__(self):
         return (
-            f'Клиент {self.name} оставил запрос (ВЫКУП, ОЦЕНКА) от '
+            f'Клиент {self.name} оставил запрос на выкуп от '
             f'{self.pub_date.strftime(DT_FORMAT)}'
         )
 
 
 class BuybackImage(models.Model):
     buyback = models.ForeignKey(
-        'BuybackWatch',
+        'BuybackWatches',
         related_name='images',
         on_delete=models.SET_NULL,
         null=True
@@ -168,6 +168,97 @@ class BuybackImage(models.Model):
     class Meta:
         verbose_name = 'Изображение из заявки'
         verbose_name_plural = 'Изображения из заявок'
+
+
+class ValuationWatches(Base):
+    email = models.EmailField(
+        max_length=255,
+        verbose_name='Почта'
+    )
+    communication_method = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        choices=COMMUNICATION_METHOD_CHOICES,
+        verbose_name='Предпочитаемый способ связи'
+    )
+    brand = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name='Бренд'
+    )
+    model = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name='Модель'
+    )
+    year = models.SmallIntegerField(
+        blank=True,
+        null=True,
+        validators=[
+            MinValueValidator(
+                MIN_YEAR_BUYBACK,
+                message=(
+                    f'Значение года не может быть меньше {MIN_YEAR_BUYBACK}г.'
+                )
+            ),
+            max_year_validator
+        ],
+        verbose_name='Год покупки'
+    )
+    price = models.IntegerField(
+        blank=True,
+        null=True,
+        validators=[
+            MinValueValidator(
+                MIN_PRICE_BUYBACK,
+                message=f'Значение не может быть меньше {MIN_PRICE_BUYBACK}.'
+            )
+        ],
+        verbose_name='Желаемая сумма (руб.)'
+    )
+    condition = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        choices=CONDITIONS_FORM_CHOICES,
+        verbose_name='Состояние часов'
+    )
+    equipment = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        choices=EQUIPMENT_FORM_CHOICES,
+        verbose_name='Комплектация'
+    )
+
+    class Meta:
+        verbose_name = 'Оценка часов'
+        verbose_name_plural = 'Оценка часов'
+
+    def __str__(self):
+        return (
+            f'Клиент {self.name} оставил запрос на оценку от '
+            f'{self.pub_date.strftime(DT_FORMAT)}'
+        )
+
+
+class ValuationImage(models.Model):
+    valuation = models.ForeignKey(
+        'ValuationWatches',
+        related_name='val_images',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    image = models.ImageField(
+        upload_to='valuation_images'
+    )
+
+    class Meta:
+        verbose_name = 'Изображение из заявки на оценку'
+        verbose_name_plural = 'Изображения из заявок на оценку'
 
 
 class WatchRequest(Base):

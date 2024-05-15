@@ -4,9 +4,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
 from .models import Watch
-from .forms import ExtendBuybackForm
-from forms.models import BuybackImage
-from forms.forms import FeedbackForm
+from .tasks import send_message
+from forms.models import BuybackImage, ValuationImage
+from forms.forms import FeedbackForm, ExtendValuationForm, ExtendBuybackForm
 
 EXCLUDE_FIELDS = (
     'id', 'title', 'is_on_main', 'condition', 'availability', 'special',
@@ -38,7 +38,7 @@ def buyback_view_page(request):
             messages.success(
                 request,
                 message=(
-                    'Обращение зарегистрировано и будет обработано '
+                    'Обращение по ВЫКУПУ зарегистрировано и будет обработано '
                     'в ближайшее время.'
                 )
             )
@@ -92,9 +92,40 @@ def watches_details_page_view(request, watch_id):
 
 
 def watches_valuation_page_view(request):
+    if request.method == 'POST':
+        form = ExtendValuationForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.save()
+            send_message()
+
+            for file in request.FILES.getlist('valuation_images'):
+                ValuationImage.objects.create(valuation=data, image=file)
+
+            messages.success(
+                request,
+                message=(
+                    'Обращение по ОЦЕНКЕ зарегистрировано и будет обработано '
+                    'в ближайшее время.'
+                )
+            )
+            return HttpResponseRedirect(
+                request.META.get('HTTP_REFERER')
+            )
+        else:
+            messages.error(
+                request,
+                message=(
+                    'Ошибка заполнения формы: '
+                    f'{form.errors.as_text()}'
+                )
+            )
+    else:
+        form = ExtendValuationForm(initial=request.POST)
+
     return render(
         request,
-        template_name='watches/valuation.html'
+        template_name='watches/valuation.html',
+        context={'valuation_form': form}
     )
 
 
