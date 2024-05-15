@@ -18,12 +18,16 @@ class Base(models.Model):
         max_length=56,
         verbose_name='Имя клиента'
     )
-    phone = PhoneNumberField()
+    phone = PhoneNumberField(
+        verbose_name='Номер телефона'
+    )
     email = models.EmailField(
         max_length=255,
         verbose_name='Почта'
     )
     text = models.TextField(
+        blank=True,
+        null=True,
         verbose_name='Текст сообщения',
     )
 
@@ -138,21 +142,32 @@ class BuybackWatch(Base):
         choices=EQUIPMENT_FORM_CHOICES,
         verbose_name='Комплектация'
     )
-    images = models.FileField(
-        upload_to='buyback_images',
-        verbose_name='Изображения'
-    )
 
     class Meta:
-        ordering = ['-pub_date']
-        verbose_name = 'Выкуп часов'
-        verbose_name_plural = 'Выкуп часов'
+        verbose_name = 'Выкуп/оценка часов'
+        verbose_name_plural = 'Выкуп/оценка часов'
 
     def __str__(self):
         return (
             f'Клиент {self.name} оставил запрос (ВЫКУП, ОЦЕНКА) от '
             f'{self.pub_date.strftime(DT_FORMAT)}'
         )
+
+
+class BuybackImage(models.Model):
+    buyback = models.ForeignKey(
+        'BuybackWatch',
+        related_name='images',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    image = models.ImageField(
+        upload_to='buyback_images'
+    )
+
+    class Meta:
+        verbose_name = 'Изображение из заявки'
+        verbose_name_plural = 'Изображения из заявок'
 
 
 class WatchRequest(Base):
@@ -165,7 +180,6 @@ class WatchRequest(Base):
     )
 
     class Meta:
-        ordering = ['-pub_date']
         verbose_name = 'Запрос на часы'
         verbose_name_plural = 'Запросы на часы'
 

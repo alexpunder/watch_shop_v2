@@ -5,6 +5,7 @@ from django.contrib import messages
 
 from .models import Watch
 from .forms import ExtendBuybackForm
+from forms.models import BuybackImage
 from forms.forms import FeedbackForm
 
 EXCLUDE_FIELDS = (
@@ -29,7 +30,11 @@ def buyback_view_page(request):
     if request.method == 'POST':
         form = ExtendBuybackForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            data = form.save()
+
+            for file in request.FILES.getlist('buyback_images'):
+                BuybackImage.objects.create(buyback=data, image=file)
+
             messages.success(
                 request,
                 message=(

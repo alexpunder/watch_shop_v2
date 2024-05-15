@@ -35,7 +35,7 @@ class CallForm(forms.ModelForm):
 
     class Meta:
         model = Call
-        fields = ('name', 'phone')
+        fields = ('name', 'phone', 'text')
 
 
 class WatchRequestForm(forms.ModelForm):

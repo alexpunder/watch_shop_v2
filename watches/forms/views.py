@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 from .forms import ShortForm, FeedbackForm, CallForm, WatchRequestForm
+from main.tasks import send_message
 
 
 def footer_form_view(request):
@@ -11,6 +12,7 @@ def footer_form_view(request):
         form = ShortForm(request.POST)
         if form.is_valid():
             form.save()
+            send_message()
             messages.success(
                 request,
                 message='Успешно.'

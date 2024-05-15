@@ -1,8 +1,10 @@
-DT_FORMAT = '%H:%M %d.%m.%Y'
+DT_FORMAT = '%d.%m.%Y %H:%M'
 
 MIN_YEAR_BUYBACK = 1900
 MIN_PRICE_BUYBACK = 1
 MIN_WATCH_PRICE = 1
+
+MAX_IMAGES_FORM = 3
 
 CONDITIONS_CHOICES = (
     ('Идеальное', 'Идеальное'),

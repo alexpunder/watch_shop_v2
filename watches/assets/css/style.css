@@ -505,7 +505,7 @@ input[type=number] {
 
 textarea.form-control,
 textarea {
-  min-height: 210px;
+  min-height: 110px;
   padding-top: 16px;
   padding-bottom: 17px;
   border-radius: 0;

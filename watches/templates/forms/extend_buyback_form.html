@@ -89,16 +89,28 @@
                 </div>
             </div>
         </div>
-        <h3 class="form-title h6">Изображения</h3>
+        <style>
+            .custom-file-input {
+                padding: 15px;
+            }
+            .custom-file-input::-webkit-file-upload-button {
+                display: none;
+            }
+        </style>
+        <h3 class="form-title h6">Изображения часов и их документов</h3>
         <div class="row">
-            <div class="col-md-6 col-xl-12">
+            <div class="col-md-6 col-xl-6">
                 <div class="form-group">
-                    <label class="custom-file-upload">
-                        <input type="file" style="display: none;" name="images" multiple accept="image/*" required id="id_images" />
-                        <i class="fas fa-cloud-upload-alt fa-lg"></i> Нажмите, чтобы прикрепить <strong>фото часов</strong> и <strong>документы</strong> на них. 
-                    </label>
-                    <label for="id_images">Загрузите хотя бы одно изображение</label>
-                    <label for="id_images">Возможные форматы: png, jpg, jpeg, heic, heiv</label>
+                    {{ buyback_form.buyback_images }}
+                    <div class="col text-center">
+                        <p> </p>
+                        <p class="form-text">Загрузите хотя бы одно, но не более трёх<br>Возможные форматы: png, jpg, jpeg, heic, heiv</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6">
+                <div class="form-group">
+                    <textarea style="border-radius: 20px;" type="text" name="text" id="id_text" placeholder="Сообщение" value="{{ request.POST.text }}"></textarea>
                 </div>
             </div>
         </div>
