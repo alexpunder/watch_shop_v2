@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
-from .forms import ShortForm, FeedbackForm, CallForm, WatchRequestForm
+from .forms import ShortForm, CallForm, WatchRequestForm
 from main.tasks import send_message
+from watches.constants import DT_FORMAT
 
 
 def footer_form_view(request):
@@ -11,8 +12,12 @@ def footer_form_view(request):
     if request.method == 'POST':
         form = ShortForm(request.POST)
         if form.is_valid():
-            form.save()
-            send_message()
+            data = form.save()
+            send_message(
+                'МАЛАЯ/НИЖНЯЯ ФОРМЫ',
+                data.pub_date.strftime(DT_FORMAT), data.id
+            )
+
             messages.success(
                 request,
                 message='Успешно.'
@@ -35,30 +40,12 @@ def index_page_short_form(request):
     if request.method == 'POST':
         form = ShortForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(
-                request,
-                message='Успешно.'
+            data = form.save()
+            send_message(
+                'МАЛАЯ/НИЖНЯЯ ФОРМЫ',
+                data.pub_date.strftime(DT_FORMAT), data.id
             )
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        else:
-            messages.error(
-                request,
-                message=(
-                    'Возникла ошибка заполнения формы: '
-                    f'{form.errors.as_text()}'
-                )
-            )
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
-def feedback_form_view(request):
-    form = FeedbackForm()
-
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save()
             messages.success(
                 request,
                 message='Успешно.'
@@ -81,7 +68,12 @@ def call_form_view(request):
     if request.method == 'POST':
         form = CallForm(request.POST)
         if form.is_valid():
-            form.save()
+            data = form.save()
+            send_message(
+                'ЗАПРОС НА ОБРАТНЫЙ ЗВОНОК',
+                data.pub_date.strftime(DT_FORMAT), data.id
+            )
+
             messages.success(
                 request,
                 message='Успешно.'
@@ -104,7 +96,12 @@ def watch_request_form_view(request):
     if request.method == 'POST':
         form = WatchRequestForm(request.POST)
         if form.is_valid():
-            form.save()
+            data = form.save()
+            send_message(
+                'ЗАПРОС НА ПРИОБРЕТЕНИЕ ЧАСОВ',
+                data.pub_date.strftime(DT_FORMAT), data.id
+            )
+
             messages.success(
                 request,
                 message='Заявка успешно отправлена.'

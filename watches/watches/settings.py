@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'main.apps.MainConfig',
     'forms.apps.FormsConfig',
+    'utility_pages.apps.UtilityPagesConfig',
 
     # Other apps
     "phonenumber_field",
@@ -75,7 +76,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'forms.context_processors.form_footer',
             ],
         },
     },

@@ -11,7 +11,13 @@ CHANAL_ID = os.getenv('CHANAL_ID')
 bot = Bot(token=TELEGRAM_TOKEN)
 
 
-def send_message():
+def send_message(
+        name_form_view=None, datetime=None, request_number=None
+):
     bot.send_message(
-        chat_id=CHANAL_ID, text='Text_message'
+        chat_id=CHANAL_ID,
+        text=(
+            f'{name_form_view}: запрос под номером {request_number} '
+            f'от {datetime}.'
+        )
     )

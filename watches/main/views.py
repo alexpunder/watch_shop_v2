@@ -6,7 +6,8 @@ from django.contrib import messages
 from .models import Watch
 from .tasks import send_message
 from forms.models import BuybackImage, ValuationImage
-from forms.forms import FeedbackForm, ExtendValuationForm, ExtendBuybackForm
+from forms.forms import ExtendValuationForm, ExtendBuybackForm
+from watches.constants import DT_FORMAT, MAX_WATCHES_ON_INDEX_PAGE
 
 EXCLUDE_FIELDS = (
     'id', 'title', 'is_on_main', 'condition', 'availability', 'special',
@@ -17,7 +18,7 @@ EXCLUDE_FIELDS = (
 def index_page_view(request):
     watches = Watch.objects.filter(
         is_on_main=True
-    )
+    )[:MAX_WATCHES_ON_INDEX_PAGE]
 
     return render(
         request,
@@ -31,6 +32,9 @@ def buyback_view_page(request):
         form = ExtendBuybackForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.save()
+            send_message(
+                'ВЫКУП ЧАСОВ', data.pub_date.strftime(DT_FORMAT), data.id
+            )
 
             for file in request.FILES.getlist('buyback_images'):
                 BuybackImage.objects.create(buyback=data, image=file)
@@ -54,12 +58,52 @@ def buyback_view_page(request):
                 )
             )
     else:
-        form = ExtendBuybackForm(initial=request.POST)
+        form = ExtendBuybackForm()
 
     return render(
         request,
         template_name='watches/buyback.html',
         context={'buyback_form': form}
+    )
+
+
+def watches_valuation_page_view(request):
+    form = ExtendValuationForm()
+
+    if request.method == 'POST':
+        form = ExtendValuationForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.save()
+            send_message(
+                'ОЦЕНКА ЧАСОВ', data.pub_date.strftime(DT_FORMAT), data.id
+            )
+
+            for file in request.FILES.getlist('valuation_images'):
+                ValuationImage.objects.create(valuation=data, image=file)
+
+            messages.success(
+                request,
+                message=(
+                    'Обращение по ОЦЕНКЕ зарегистрировано и будет обработано '
+                    'в ближайшее время.'
+                )
+            )
+            return HttpResponseRedirect(
+                request.META.get('HTTP_REFERER')
+            )
+        else:
+            messages.error(
+                request,
+                message=(
+                    'Ошибка заполнения формы: '
+                    f'{form.errors.as_text()}'
+                )
+            )
+
+    return render(
+        request,
+        template_name='watches/valuation.html',
+        context={'valuation_form': form}
     )
 
 
@@ -89,111 +133,3 @@ def watches_details_page_view(request, watch_id):
         template_name='watches/watches_details.html',
         context={'watch': watch, 'data': data.items()}
     )
-
-
-def watches_valuation_page_view(request):
-    if request.method == 'POST':
-        form = ExtendValuationForm(request.POST, request.FILES)
-        if form.is_valid():
-            data = form.save()
-            send_message()
-
-            for file in request.FILES.getlist('valuation_images'):
-                ValuationImage.objects.create(valuation=data, image=file)
-
-            messages.success(
-                request,
-                message=(
-                    'Обращение по ОЦЕНКЕ зарегистрировано и будет обработано '
-                    'в ближайшее время.'
-                )
-            )
-            return HttpResponseRedirect(
-                request.META.get('HTTP_REFERER')
-            )
-        else:
-            messages.error(
-                request,
-                message=(
-                    'Ошибка заполнения формы: '
-                    f'{form.errors.as_text()}'
-                )
-            )
-    else:
-        form = ExtendValuationForm(initial=request.POST)
-
-    return render(
-        request,
-        template_name='watches/valuation.html',
-        context={'valuation_form': form}
-    )
-
-
-def about_page_view(request):
-    return render(
-        request,
-        template_name='pages/about.html'
-    )
-
-
-def contacts_page_view(request):
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(
-                request,
-                message=(
-                    'Ваше сообщение успешно отправлено. '
-                    'Благодарим за обратную связь!'
-                )
-            )
-            return HttpResponseRedirect(
-                request.META.get('HTTP_REFERER')
-            )
-        else:
-            messages.warning(
-                request,
-                message=(
-                    'Ошибка заполнения формы: '
-                    f'{form.errors.as_text()}'
-                )
-            )
-    else:
-        form = FeedbackForm()
-
-    return render(
-        request,
-        template_name='pages/contacts.html',
-        context={'form': form}
-    )
-
-
-def faq_page_view(request):
-    return render(
-        request,
-        template_name='pages/faq.html'
-    )
-
-
-def confidential_page_view(request):
-    return render(
-        request,
-        template_name='pages/confidential.html'
-    )
-
-
-def terms_page_view(request):
-    return render(
-        request,
-        template_name='pages/terms.html'
-    )
-
-
-def page_not_found(request, exception):
-    return render(request, 'pages/404.html', status=404)
-
-
-def server_error(request):
-    return render(
-        request, 'pages/500.html', status=500)
