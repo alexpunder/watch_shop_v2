@@ -5,7 +5,7 @@
 <!--==============================
     Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg.png">
+<div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg-3.jpg">
     <div class="container z-index-common">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">Продажа часов</h1>
@@ -22,14 +22,25 @@
 <!--==============================
   Course Area
 ==============================-->
-<section class="space-top space-extra-bottom">
+<section class=" space-top space-extra-bottom">
     <div class="container">
         <div class="row">
-            {% for watch in watches %}
-                {% include "includes/watches_list_card.html" %}
-            {% endfor %}
+            <div class="col-lg-2 col-xl-2">
+                <form method="get" class="form-style2">
+                    {{ filters.form.as_p }}
+                    <button type="submit" class="vs-btn">Применить</button>
+                    <a href={% url "main:watches" %} class="vs-btn" aria-label="Сбросить фильтры">Сбросить</a>
+                </form>
+            </div>
+            <div class="col-lg-10 col-xl-10 mb-lg-0">
+                <div class="row">
+                    {% for watch in page_obj %}
+                        {% include "includes/watches_list_card.html" %}
+                    {% endfor %}
+                </div>
+                {% include "includes/pagination.html" %}
+            </div>
         </div>
-        {% include "includes/pagination.html" %}
     </div>
 </section>
 

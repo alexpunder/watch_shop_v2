@@ -64,8 +64,8 @@
 ============================== -->
 <div class="popup-search-box d-none d-lg-block  ">
     <button class="searchClose"><i class="fal fa-times"></i></button>
-    <form action="#">
-        <input type="text" class="border-theme" placeholder="Что Вас интересует?">
+    <form action="{% url 'main:search' %}" method="GET">
+        <input type="text" class="border-theme" name="search" placeholder="Что Вас интересует?">
         <button type="submit"><i class="fal fa-search"></i></button>
     </form>
 </div>

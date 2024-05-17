@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'utility_pages.apps.UtilityPagesConfig',
 
     # Other apps
-    "phonenumber_field",
+    'phonenumber_field',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

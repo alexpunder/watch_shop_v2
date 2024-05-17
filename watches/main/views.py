@@ -2,8 +2,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from .models import Watch
+from .filters import SearchFilter, WatchesFilter
 from .tasks import send_message
 from forms.models import BuybackImage, ValuationImage
 from forms.forms import ExtendValuationForm, ExtendBuybackForm
@@ -13,6 +15,15 @@ EXCLUDE_FIELDS = (
     'id', 'title', 'is_on_main', 'condition', 'availability', 'special',
     'for_who', 'shape', 'price', 'reference', 'image', 'material'
 )
+
+
+def search_view(request):
+    watches = SearchFilter(request.GET, queryset=Watch.objects.all())
+    return render(
+        request,
+        template_name='watches/search_watches.html',
+        context={'watches': watches}
+    )
 
 
 def index_page_view(request):
@@ -108,11 +119,20 @@ def watches_valuation_page_view(request):
 
 
 def watches_page_view(request):
-    watches = Watch.objects.all()
+    watches_filter = WatchesFilter(
+        request.GET, queryset=Watch.objects.all()
+    )
+    paginator = Paginator(watches_filter.qs, per_page=1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(
         request,
         template_name='watches/watches.html',
-        context={'watches': watches}
+        context={
+            'page_obj': page_obj,
+            'filters': watches_filter
+        }
     )
 
 
