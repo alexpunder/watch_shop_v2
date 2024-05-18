@@ -5,55 +5,27 @@
     <div class="vs-menu-area text-center">
         <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="index.html"><img src="/assets/img/logo.svg" alt="Educino"></a>
+            <a href="{% url 'main:index' %}"><img src="/assets/img/logo.svg" alt="Educino"></a>
         </div>
         <div class="vs-mobile-menu">
             <ul>
-                <li class="menu-item-has-children">
-                    <a href="index.html">Demos</a>
-                    <ul class="sub-menu">
-                        <li><a href="index.html">Demo Style 1</a></li>
-                        <li><a href="index-2.html">Demo Style 2</a></li>
-                        <li><a href="index-3.html">Demo Style 3</a></li>
-                    </ul>
+                <li>
+                    <a href="{% url 'main:buyback' %}">Выкуп часов</a>
                 </li>
                 <li>
-                    <a href="about.html">About Us</a>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="course.html">Courses</a>
-                    <ul class="sub-menu">
-                        <li><a href="course.html">Courses 1</a></li>
-                        <li><a href="courses-2.html">Courses 2</a></li>
-                        <li><a href="course-details.html">Courses Details 1</a></li>
-                        <li><a href="course-details-2.html">Courses Details 2</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="blog.html">Blog</a>
-                    <ul class="sub-menu">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Pages</a>
-                    <ul class="sub-menu">
-                        <li><a href="team.html">Our Tutors</a></li>
-                        <li><a href="team-details.html">Tutor Details</a></li>
-                        <li><a href="become-tutor.html">Become Tutor</a></li>
-                        <li><a href="find-tutor.html">Find Tutor</a></li>
-                        <li><a href="academic.html">Academic</a></li>
-                        <li><a href="academic-program.html">Academic Program</a></li>
-                        <li><a href="program-details.html">Program Details</a></li>
-                        <li><a href="find-program.html">Find Program</a></li>
-                        <li><a href="event-details.html">Event Details</a></li>
-                        <li><a href="login-register.html">Login Register</a></li>
-                        <li><a href="error.html">Error Page</a></li>
-                    </ul>
+                    <a href="{% url 'main:watches' %}">Продажа часов</a>
                 </li>
                 <li>
-                    <a href="contact.html">Contact Us</a>
+                    <a href="{% url 'main:valuation' %}">Оценка</a>
+                </li>
+                <li>
+                    <a href="{% url 'utility_pages:contacts' %}">Контакты</a>
+                </li>
+                <li>
+                    <a href="{% url 'utility_pages:faq' %}">Вопросы</a>
+                </li>
+                <li>
+                    <a href="{% url 'utility_pages:about' %}">О нас</a>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,38 @@
+TITLES_DATA = {
+    'index': 'YellowWatch - часовой бутик',
+    'search': 'Поиск по сайту',
+    'buyback': 'Выкуп часов',
+    'watches': 'Продажа часов',
+    'valuation': 'Оценка часов',
+    'about': 'О нас',
+    'contacts': 'Контакты',
+    'faq': 'Частые вопросы',
+    'confidential': 'Политика конфиденциальности',
+    'terms': 'Пользовательское соглашение',
+    'not_found': 'Страница не найдена'
+}
+
+DESCRIPTIONS_DATA = {
+    'index': (
+        'YellowWatch - часовой бутик элитных швейцарских часов. '
+        'Оказываем услуги оценки, выкупа и продажи.'
+    ),
+    'search': '',
+    'buyback': '',
+    'watches': '',
+    'valuation': '',
+    'about': '',
+    'contacts': '',
+    'faq': '',
+    'confidential': '',
+    'terms': '',
+    'not_found': ''
+}
+
 DT_FORMAT = '%d.%m.%Y %H:%M'
 
 MAX_WATCHES_ON_INDEX_PAGE = 10
+MAX_WATCHES_ON_WATCHES_PAGE = 3
 
 MIN_YEAR_BUYBACK = 1900
 MIN_PRICE_BUYBACK = 1
@@ -18,7 +50,7 @@ CONDITIONS_CHOICES = (
 )
 
 AVAILABILITY_CHOICES = (
-    ('В наличии', 'В наличии'),
+    ('Имеются в наличии', 'Имеются в наличии'),
     ('Уточнить у менеджера', 'Уточнить у менеджера'),
 )
 

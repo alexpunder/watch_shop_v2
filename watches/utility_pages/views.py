@@ -4,13 +4,17 @@ from django.contrib import messages
 
 from forms.forms import FeedbackForm
 from main.tasks import send_message
-from watches.constants import DT_FORMAT
+from watches.constants import DT_FORMAT, TITLES_DATA, DESCRIPTIONS_DATA
 
 
 def about_page_view(request):
     return render(
         request,
-        template_name='utility_pages/about.html'
+        template_name='utility_pages/about.html',
+        context={
+            'title': TITLES_DATA.get('about'),
+            'description': DESCRIPTIONS_DATA.get('about')
+        }
     )
 
 
@@ -48,35 +52,62 @@ def contacts_page_view(request):
     return render(
         request,
         template_name='utility_pages/contacts.html',
-        context={'form': form}
+        context={
+            'form': form,
+            'title': TITLES_DATA.get('contacts'),
+            'description': DESCRIPTIONS_DATA.get('contacts')
+        }
     )
 
 
 def faq_page_view(request):
     return render(
         request,
-        template_name='utility_pages/faq.html'
+        template_name='utility_pages/faq.html',
+        context={
+            'title': TITLES_DATA.get('faq'),
+            'description': DESCRIPTIONS_DATA.get('faq')
+        }
     )
 
 
 def confidential_page_view(request):
     return render(
         request,
-        template_name='utility_pages/confidential.html'
+        template_name='utility_pages/confidential.html',
+        context={
+            'title': TITLES_DATA.get('confidential'),
+            'description': DESCRIPTIONS_DATA.get('confidential')
+        }
     )
 
 
 def terms_page_view(request):
     return render(
         request,
-        template_name='utility_pages/terms.html'
+        template_name='utility_pages/terms.html',
+        context={
+            'title': TITLES_DATA.get('terms'),
+            'description': DESCRIPTIONS_DATA.get('terms')
+        }
     )
 
 
 def page_not_found(request, exception):
-    return render(request, 'utility_pages/404.html', status=404)
+    return render(
+        request,
+        'utility_pages/404.html',
+        context={
+            'title': TITLES_DATA.get('terms'),
+            'description': DESCRIPTIONS_DATA.get('terms')
+        },
+        status=404
+    )
 
 
 def server_error(request):
     return render(
-        request, 'utility_pages/500.html', status=500)
+        request,
+        'utility_pages/500.html',
+        status=500
+    )

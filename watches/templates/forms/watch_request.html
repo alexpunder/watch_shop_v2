@@ -1,7 +1,7 @@
 <form method="post" action="{% url 'forms:watch_request' %}" class="form-style5 modal-content">
     {% csrf_token %}
     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть" style="position: absolute; top: 15px; right: 15px; background-color: transparent; border: none; font-size: 30px; padding: 20px;">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true"><i class="fal fa-times"></i></span>
     </button>
     <div class="form-inner">
         <h3 class="form-text text-center h5">Оставьте заявку и наши специалисты непременно свяжутся с Вами в ближайшее время.</h3>
@@ -30,6 +30,8 @@
             </div>
             <div class="col-12 text-center">
                 <button class="vs-btn">Отправить</button>
+            </div>
+            <div class="col-12 text-center">
                 <a class="form-link" href="{% url 'utility_pages:faq' %}">Часто задаваемые вопросы</a>
             </div>
         </div>

@@ -5,7 +5,7 @@
 <!--==============================
     Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg-3.jpg">
+<div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg-3.webp">
     <div class="container z-index-common">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">Продажа часов</h1>
@@ -24,6 +24,19 @@
 ==============================-->
 <section class=" space-top space-extra-bottom">
     <div class="container">
+        <div class="filter-button-container">
+            <button class="vs-btn" style="margin-bottom: 60px;" id="menu-toggle" aria-label="Открыть меню">Фильтры</button>
+        </div>
+        <div id="sidebar">
+            <div class="close-btn">
+                <button aria-label="Закрыть меню"><i class="fal fa-times"></i></button>
+            </div>
+            <form method="get" class="form-style2">
+                {{ filters.form.as_p }}
+                <button type="submit" class="vs-btn">Применить</button>
+                <a href="{% url 'main:watches' %}" class="vs-btn" aria-label="Сбросить фильтры">Сбросить</a>
+            </form>
+        </div>
         <div class="row">
             <div class="col-lg-2 col-xl-2">
                 <form method="get" class="form-style2">

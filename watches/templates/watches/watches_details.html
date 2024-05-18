@@ -20,7 +20,11 @@
                         max-height: 100%; /* Максимальная высота изображения */
                     }
                 </style>
-                <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="{{ watch.image.url }}" alt="girl"></div>
+                {% if watch.image %}
+                    <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="{{ watch.image.url }}" alt="girl"></div>
+                {% else %}
+                    <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="/assets/img/course/course-1-1.png" alt="girl"></div>
+                {% endif %}
                 <div class="course-category">
                     <a>{{ watch.condition.title }}</a>
                     {% if watch.special %}

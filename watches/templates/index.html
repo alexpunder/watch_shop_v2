@@ -134,7 +134,7 @@
                 <div class="col-lg-6 align-self-center">
                     <div class="picture-box3">
                         <div class="img-1 mega-hover">
-                            <img src="/assets/img/about/about-3-1.jpg" alt="About Img">
+                            <img src="/assets/img/about/about-3-1-1.jpg" alt="About Img">
                             <div class="shape-dotted jump"></div>
                         </div>
                         <div class="picture-content">
@@ -187,7 +187,11 @@
                 {% for watch in watches %}
                     <div class="col-auto">
                         <div class="course-style3">
-                            <div class="image-container-1"><img src="{{ watch.image.url }}" alt="image"></div>
+                            {% if watch.image %}
+                                <div class="image-container-1"><img src="{{ watch.image.url }}" alt="image"></div>
+                            {% else %}
+                                <div class="image-container-1"><img src="assets/img/course/course-1-1.png" alt="image"></div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}

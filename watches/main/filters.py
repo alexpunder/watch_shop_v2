@@ -78,7 +78,7 @@ class WatchesFilter(django_filters.FilterSet):
         label='',
         empty_label='Форма корпуса'
     )
-    materia = django_filters.ModelChoiceFilter(
+    material = django_filters.ModelChoiceFilter(
         queryset=Material.objects.all(),
         widget=forms.Select(attrs={
             'class': 'form-control'
@@ -91,5 +91,5 @@ class WatchesFilter(django_filters.FilterSet):
         model = Watch
         fields = (
             'condition', 'availability', 'brand', 'special',
-            'for_who', 'shape', 'materia'
+            'for_who', 'shape', 'material'
         )
