@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     ShortMain, BuybackWatches, BuybackImage,
-    ValuationWatches, ValuationImage
+    ValuationWatches, ValuationImage, WatchRequest
 )
 
 
@@ -28,4 +28,9 @@ class BuybackWatchAdmin(admin.ModelAdmin):
 
 @admin.register(ShortMain)
 class ShortMainAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(WatchRequest)
+class WatchRequestAdmin(admin.ModelAdmin):
     pass

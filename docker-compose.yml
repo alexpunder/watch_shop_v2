@@ -1,0 +1,25 @@
+version: '3'
+
+volumes:
+  assets:
+  media:
+
+services:
+  backend:
+    build: ./watches/
+    env_file: .env
+    volumes:
+      - assets:/assets
+      - media:/app/media
+
+  nginx:
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile
+    volumes:
+      - assets:/assets
+      - media:/app/media
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
