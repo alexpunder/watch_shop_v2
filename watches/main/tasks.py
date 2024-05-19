@@ -2,6 +2,7 @@ import os
 
 from telegram import Bot
 from dotenv import load_dotenv
+from celery import shared_task
 
 load_dotenv()
 
@@ -11,6 +12,7 @@ CHANAL_ID = os.getenv('CHANAL_ID')
 bot = Bot(token=TELEGRAM_TOKEN)
 
 
+@shared_task
 def send_message(
         name_form_view=None, datetime=None, request_number=None
 ):

@@ -15,7 +15,7 @@ def footer_form_view(request):
         if form.is_valid():
             with transaction.atomic():
                 data = form.save()
-                send_message(
+                send_message.delay(
                     'МАЛАЯ/НИЖНЯЯ ФОРМЫ',
                     data.pub_date.strftime(DT_FORMAT), data.id
                 )
@@ -44,7 +44,7 @@ def index_page_short_form(request):
         if form.is_valid():
             with transaction.atomic():
                 data = form.save()
-                send_message(
+                send_message.delay(
                     'МАЛАЯ/НИЖНЯЯ ФОРМЫ',
                     data.pub_date.strftime(DT_FORMAT), data.id
                 )
@@ -73,7 +73,7 @@ def call_form_view(request):
         if form.is_valid():
             with transaction.atomic():
                 data = form.save()
-                send_message(
+                send_message.delay(
                     'ЗАПРОС НА ОБРАТНЫЙ ЗВОНОК',
                     data.pub_date.strftime(DT_FORMAT), data.id
                 )
@@ -102,7 +102,7 @@ def watch_request_form_view(request):
         if form.is_valid():
             with transaction.atomic():
                 data = form.save()
-                send_message(
+                send_message.delay(
                     'ЗАПРОС НА ПРИОБРЕТЕНИЕ ЧАСОВ',
                     data.pub_date.strftime(DT_FORMAT), data.id
                 )

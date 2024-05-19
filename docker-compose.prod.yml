@@ -8,12 +8,14 @@ volumes:
 services:
   db:
     image: postgres:13.10
+    restart: always
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    build: ./watches/
+    image: alexpunder/watches
+    restart: always
     env_file: .env
     volumes:
       - assets:/assets
@@ -23,14 +25,14 @@ services:
       - redis
 
   redis:
-    build:
-      context: ./redis/
-      dockerfile: Dockerfile
+    image: alexpunder/watches_redis
+    restart: always
     ports:
       - 6379:6379
 
   celery-worker:
-    build: ./watches/
+    image: alexpunder/watches
+    restart: always
     env_file: .env
     command: celery -A watches worker --loglevel=info
     depends_on:
@@ -42,9 +44,8 @@ services:
       - media:/app/media
 
   nginx:
-    build:
-      context: ./nginx/
-      dockerfile: Dockerfile
+    image: alexpunder/watches_nginx
+    restart: always
     volumes:
       - assets:/assets
       - media:/app/media

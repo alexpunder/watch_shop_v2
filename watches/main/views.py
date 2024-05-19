@@ -56,7 +56,7 @@ def buyback_view_page(request):
         if form.is_valid():
             with transaction.atomic():
                 data = form.save()
-                send_message(
+                send_message.delay(
                     'ВЫКУП ЧАСОВ', data.pub_date.strftime(DT_FORMAT), data.id
                 )
 
@@ -103,7 +103,7 @@ def watches_valuation_page_view(request):
         if form.is_valid():
             with transaction.atomic():
                 data = form.save()
-                send_message(
+                send_message.delay(
                     'ОЦЕНКА ЧАСОВ', data.pub_date.strftime(DT_FORMAT), data.id
                 )
 
