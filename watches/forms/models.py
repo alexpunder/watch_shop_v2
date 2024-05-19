@@ -14,6 +14,10 @@ class Base(models.Model):
         auto_now_add=True,
         verbose_name='Дата обращения'
     )
+    processed = models.BooleanField(
+        default=False,
+        verbose_name='Обработан?'
+    )
     name = models.CharField(
         max_length=56,
         verbose_name='Имя клиента'
@@ -162,12 +166,16 @@ class BuybackImage(models.Model):
         null=True
     )
     image = models.ImageField(
-        upload_to='buyback_images'
+        upload_to='buyback_images',
+        verbose_name='Изображения часов из заявки на выкуп'
     )
 
     class Meta:
         verbose_name = 'Изображение из заявки'
-        verbose_name_plural = 'Изображения из заявок'
+        verbose_name_plural = 'Изображения из заявки'
+
+    def __str__(self):
+        return f'Изображение часов #{self.id}'
 
 
 class ValuationWatches(Base):
@@ -253,12 +261,16 @@ class ValuationImage(models.Model):
         null=True
     )
     image = models.ImageField(
-        upload_to='valuation_images'
+        upload_to='valuation_images',
+        verbose_name='Изображения часов из заявки на оценку'
     )
 
     class Meta:
         verbose_name = 'Изображение из заявки на оценку'
         verbose_name_plural = 'Изображения из заявок на оценку'
+
+    def __str__(self):
+        return f'Изображение часов #{self.id}'
 
 
 class WatchRequest(Base):

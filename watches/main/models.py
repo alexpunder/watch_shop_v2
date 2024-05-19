@@ -84,7 +84,7 @@ class Watch(Base):
             'Обязательное поле.'
         )
     )
-    price = models.PositiveSmallIntegerField(
+    price = models.PositiveIntegerField(
         validators=[
             MinValueValidator(
                 MIN_WATCH_PRICE,

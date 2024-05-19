@@ -24,7 +24,7 @@ class ExtendValuationForm(forms.ModelForm):
 
     class Meta:
         model = ValuationWatches
-        exclude = ('pub_date',)
+        exclude = ('pub_date', 'processed')
 
     def clean(self):
         cleaned_data = super().clean()
@@ -55,7 +55,7 @@ class ExtendBuybackForm(forms.ModelForm):
 
     class Meta:
         model = BuybackWatches
-        exclude = ('pub_date',)
+        exclude = ('pub_date', 'processed')
 
     def clean(self):
         cleaned_data = super().clean()
@@ -75,36 +75,25 @@ class ShortForm(forms.ModelForm):
 
     class Meta:
         model = ShortMain
-        exclude = ('pub_date', 'email')
-        # widgets = {
-        #     'name': forms.TextInput(
-        #         attrs={'placeholder': 'Ваше имя'}
-        #     ),
-        #     'phone': forms.TextInput(
-        #         attrs={'placeholder': 'Номер для связи'}
-        #     ),
-        #     'text': forms.TextInput(
-        #         attrs={'placeholder': 'Сопроводительны текст'}
-        #     )
-        # }
+        exclude = ('pub_date', 'processed')
 
 
 class FeedbackForm(forms.ModelForm):
 
     class Meta:
         model = Feedback
-        exclude = ('pub_date',)
+        exclude = ('pub_date', 'processed')
 
 
 class CallForm(forms.ModelForm):
 
     class Meta:
         model = Call
-        exclude = ('pub_date',)
+        exclude = ('pub_date', 'processed')
 
 
 class WatchRequestForm(forms.ModelForm):
 
     class Meta:
         model = WatchRequest
-        exclude = ('pub_date',)
+        exclude = ('pub_date', 'processed')
