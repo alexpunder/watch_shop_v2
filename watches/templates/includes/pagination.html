@@ -1,0 +1,27 @@
+{% load watches_extra %}
+
+{% if page_obj.has_other_pages %}
+    <div class="vs-pagination">
+        <ul>
+            {% if page_obj.has_previous %}
+            <li class="prev">
+                <a href="{% relative_url page_obj.previous_page_number 'page' request.GET.urlencode %}">Предыдущая</a>
+            </li>
+            {% endif %}
+
+            {% for i in page_obj.paginator.page_range %}
+                {% if i == page_obj.number %}
+                    <li class="active"><span>{{ i }}</span></li>
+                {% elif i > page_obj.number|add:"-3" and i < page_obj.number|add:"3" %}
+                    <li><a href="{% relative_url i 'page' request.GET.urlencode %}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="next">
+                <a href="{% relative_url page_obj.next_page_number 'page' request.GET.urlencode %}">Следующая</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}

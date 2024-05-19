@@ -1,0 +1,27 @@
+<div class="col-sm-6 col-xl-4">
+    <div class="course-style1 has-border">
+        <div class="image-container">
+            {% if watch.image %}
+                <a href="{% url 'main:watches_details' watch.id %}" style="display: flex; justify-content: center; align-items: center;"><img src="{{ watch.image.url }}" class="w-75 p-3" alt="Course Img"></a>
+            {% else %}
+                <a href="{% url 'main:watches_details' watch.id %}" style="display: flex; justify-content: center; align-items: center;"><img src="assets/img/course/course-1-1.png" class="w-100" alt="Course Img"></a>
+            {% endif %}
+                <div class="course-category">
+                    {{ watch.condition.title }}
+                    {% if watch.special %}
+                        <br>{{ watch.special }}
+                    {% endif %}
+                </div>
+            <button type="button" class="vs-btn style2" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-watch-name="id: {{ watch.id }}, реф.: {{ watch.reference }}"><i class="fas fa-check"></i>Запросить</button>
+        </div>
+        <div class="course-content">
+            <div class="course-top">
+                <div class="course-review">{{ watch.availability }}</div>
+                <span class="course-price">{{ watch.price }}$</span>
+            </div>
+            <h3 class="h5 course-name"><a href="{% url 'main:watches_details' watch.id %}" class="text-inherit">{{ watch.brand.title }}</a></h3>
+            <div class="course-teacher"><a class="text-inherit" href="{% url 'main:watches_details' watch.id %}">{{ watch.title }}</a></div>
+            <div class="course-review"><a>Референс: {{ watch.reference }}</a></div>
+        </div>
+    </div>
+</div>

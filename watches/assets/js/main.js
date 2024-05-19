@@ -131,6 +131,30 @@
 
   $('.vs-menu-wrapper').vsmobilemenu();
 
+  /*---------- 03. Mobile Menu Filters Active ----------*/
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const closeBtn = document.querySelector('#sidebar .close-btn button');
+
+    menuToggle.addEventListener('click', function () {
+        sidebar.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    closeBtn.addEventListener('click', function () {
+        sidebar.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+
+    // Закрытие меню при клике вне его области
+    document.addEventListener('click', function (event) {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            sidebar.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+  });
 
   /*---------- 04. Sticky fix ----------*/
   var lastScrollTop = '';

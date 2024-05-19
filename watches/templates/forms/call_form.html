@@ -1,0 +1,30 @@
+<form method="post" action="{% url 'forms:call_form' %}" class="form-style5 modal-content">
+    {% csrf_token %}
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть" style="position: absolute; top: 15px; right: 15px; background-color: transparent; border: none; font-size: 30px; padding: 20px;">
+        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+    </button>
+    <div class="form-inner">
+        <h3 class="form-text text-center h5">Оставьте заявку и наши специалисты свяжутся с Вами в ближайшее время.</h3>
+        <div class="row">
+            <div class="col-md-6 col-xl-12">
+                <div class="form-group">
+                    <label for="id_name"></label>
+                    <input type="text" name="name" placeholder="Имя" maxlength="56" required id="id_name" value="{{ request.POST.name }}">
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-12">
+                <div class="form-group">
+                    <label for="id_phone"></label>
+                    <input type="text" name="phone" placeholder="Телефон" maxlength="56" required id="id_phone" value="{{ request.POST.phone }}">
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button class="vs-btn">Отправить</button>
+            </div>
+            <div class="col-12 text-center">
+                <a class="form-link" href="{% url 'utility_pages:faq' %}">Часто задаваемые вопросы</a>
+            </div>
+        </div>
+    </div>
+    <div class="vs-circle color2"></div>
+</form>

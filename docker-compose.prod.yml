@@ -1,0 +1,55 @@
+version: '3'
+
+volumes:
+  pg_data:
+  assets:
+  media:
+
+services:
+  db:
+    image: postgres:13.10
+    restart: always
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    image: alexpunder/watches
+    restart: always
+    env_file: .env
+    volumes:
+      - assets:/assets
+      - media:/app/media
+    depends_on:
+      - db
+      - redis
+
+  redis:
+    image: alexpunder/watches_redis
+    restart: always
+    ports:
+      - 6379:6379
+
+  celery-worker:
+    image: alexpunder/watches
+    restart: always
+    env_file: .env
+    command: celery -A watches worker --loglevel=info
+    depends_on:
+      - redis
+    links:
+      - redis
+    volumes:
+      - assets:/assets
+      - media:/app/media
+
+  nginx:
+    image: alexpunder/watches_nginx
+    restart: always
+    volumes:
+      - assets:/assets
+      - media:/app/media
+    ports:
+      - 8000:80
+    depends_on:
+      - backend

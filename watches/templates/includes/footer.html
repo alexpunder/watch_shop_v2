@@ -7,24 +7,26 @@
             <div class="row justify-content-between">
                 <div class="col-lg-4 text-center text-lg-start">
                     <div class="widget footer-widget">
-                        <div class="footer-logo mx-auto mx-lg-0"> <a href="{% url 'main:index' %}"><img src="assets/img/logo.svg" alt="logo"></a> </div>
-                        <div class="vs-widget-about">
-                            <p class="footer-text">Lorem ipsum dolor sit amet, consectet remdolor sit amet. sum dolor sit amet, consect dolor sit amet, comod.</p>
-                            <p class="footer-info"><i class="fal fa-phone-alt"></i><a class="text-inherit" href="tel:+79608889293">+7 (960) 888-92-93</a></p>
-                            <p class="footer-info"><i class="fal fa-envelope"></i><a class="text-inherit" href="mailto:yellow.watch24@gmail.com">yellow.watch24@gmail.com</a></p>
-                        </div>
+                        <div class="footer-logo mx-auto mx-lg-0"> <a href="{% url 'main:index' %}"><img src="/assets/img/logo.svg" alt="logo"></a> </div>
+                        <p class="footer-text">Мы предлагаем эксклюзивные швейцарские часы от ведущих мировых брендов.</p>
+                        <p class="footer-text">Высокое качество и аутентичность гарантированы.</p>
+                    </div>
+                    <div class="widget footer-widget">
+                        <p class="footer-info"><i class="fal fa-phone-alt"></i><a class="text-inherit" href="tel:+79608889293">+7 (960) 888-92-93</a></p>
+                        <p class="footer-info"><i class="fal fa-envelope"></i><a class="text-inherit" href="mailto:yellow.watch24@gmail.com">yellow.watch24@gmail.com</a></p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-2">
                     <div class="widget nav_menu footer-widget">
                         <h3 class="widget_title">Разделы сайта</h3>
                         <div class="menu-all-pages-container footer-menu">
                             <ul class="menu">
-                                <li><a href="course.html">Выкуп часов</a></li>
-                                <li><a href="course.html">Продажа часов</a></li>
-                                <li><a href="course.html">Оценка часов</a></li>
-                                <li><a href="course.html">Контакты</a></li>
-                                <li><a href="course.html">О нас</a></li>
+                                <li><a href="{% url 'main:buyback' %}">Выкуп часов</a></li>
+                                <li><a href="{% url 'main:watches' %}">Продажа часов</a></li>
+                                <li><a href="{% url 'main:valuation' %}">Оценка</a></li>
+                                <li><a href="{% url 'utility_pages:faq' %}">Вопросы</a></li>
+                                <li><a href="{% url 'utility_pages:contacts' %}">Контакты</a></li>
+                                <li><a href="{% url 'utility_pages:about' %}">О нас</a></li>
                             </ul>
                         </div>
                     </div>
@@ -32,12 +34,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="widget footer-widget">
                         <h4 class="widget_title">Остались вопросы? Напиши нам!</h4>
-                        {% comment %} <p class="mailchimp-text">Subscribe to our newsletter. Get academic updates to news and events.</p> {% endcomment %}
-                        <form class="newsletter-form">
-                            <input class="form-control" type="email" placeholder="Номер для связи" required="">
-                            <input class="form-control" type="text" placeholder="Текст сообщения" required="">
-                            <button type="submit" class="vs-btn">Отправить</button>
-                        </form>
+                        {% include "forms/footer_form.html" %}
                     </div>
                 </div>
             </div>

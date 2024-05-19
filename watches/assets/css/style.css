@@ -505,7 +505,7 @@ input[type=number] {
 
 textarea.form-control,
 textarea {
-  min-height: 210px;
+  min-height: 110px;
   padding-top: 16px;
   padding-bottom: 17px;
   border-radius: 0;
@@ -3058,7 +3058,7 @@ a.text-theme:hover,
 
 .footer-logo {
   margin-bottom: 20px;
-  max-width: 200px;
+  max-width: 250px;
 }
 
 .footer-text {
@@ -9852,3 +9852,59 @@ blockquote.vs-quote cite {
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+
+/*------------------- Sidebar Filter Mobile Menu -------------------*/
+/* Стили для бокового меню */
+#sidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#sidebar .close-btn {
+  display: block;
+  text-align: right;
+  padding: 10px;
+}
+
+#sidebar .close-btn button {
+  background: none;
+  border: none;
+  font-size: 24px;
+}
+
+/* Кнопка для открытия бокового меню */
+.filter-button-container {
+  display: none; /* Скрываем кнопку по умолчанию */
+}
+
+/* Показывать боковое меню и кнопку в мобильной версии */
+@media (max-width: 767px) {
+  .col-lg-2, .col-xl-2 {
+      display: none;
+  }
+  .filter-button-container {
+      display: block; /* Показываем кнопку только на мобильных устройствах */
+  }
+  #sidebar {
+      display: block;
+  }
+}
+
+/* Стили для блокировки прокрутки основного экрана */
+body.no-scroll {
+  overflow: hidden;
+}

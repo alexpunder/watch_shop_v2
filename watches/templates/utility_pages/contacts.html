@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg-5.webp">
+    <div class="container z-index-common">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Контакты</h1>
+            <p class="breadcumb-text">Часовой бутик с безупречной репутацией.</p>
+            <div class="breadcumb-menu-wrap">
+                <ul class="breadcumb-menu">
+                    <li><a href="{% url 'main:index' %}">Главная</a></li>
+                    <li>Контакты</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==============================
+  Contact Area
+==============================-->
+<section class=" space-top space-extra-bottom">
+    <div class="container">
+        <div class="row gx-80">
+            <div class="col-lg-6 col-xl-6 mb-30 mb-lg-0">
+                <h2 class="border-title2 h1">Режим работы</h2>
+                <p class="contact-info">
+                    <i class="fas fa-clock"></i>
+                    С понедельника по пятницу с 8:00 до 18:00 <br> Суббота и воскресенье - выходной
+                </p>
+                <p class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Волгоградская область, г. Вожский, ул. Александрова, д. 18а
+                </p>
+                <p class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <a class="text-inherit" href="tel:+79608889293">+7 (960) 888-92-93</a>
+                </p>
+                <p class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <a class="text-inherit" href="mailto:yellow.watch24@gmail.com">yellow.watch24@gmail.com</a>
+                </p>
+                <div class="mega-hover rounded-20 mt-4 mt-lg-5 mb-4"><img src="/assets/img/about/contact-1-2.webp" alt="office" class="w-100"></div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                {% include "forms/contact_form.html" %}
+            </div>
+        </div>
+    </div>
+</section>
+<div class="overflow-hidden rounded-20 space-bottom">
+    <div class="container">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A744caa2e64992d79b10b3e7684659f4ff43ad893ab297a9db46373c255c8e427&amp;source=constructor" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+{% endblock content %}

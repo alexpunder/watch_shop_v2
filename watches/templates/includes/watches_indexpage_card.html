@@ -1,0 +1,28 @@
+<div class="col-md-6 col-xl-12">
+    <div class="course-style4">
+        <div class="image-container">
+            {% if watch.image %}
+                <a href="{% url 'main:watches_details' watch.id %}"><img src="{{ watch.image.url }}" alt="Course Img"></a>
+            {% else %}
+                <a href="{% url 'main:watches_details' watch.id %}"><img src="assets/img/course/course-1-1.png" alt="Course Img"></a>
+            {% endif %}
+        </div>
+        <div class="course-content">
+            <div class="course-category"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.condition.title }}</a></div>
+            {% if watch.special %}
+                <div class="course-category"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.special }}</a></div>
+            {% endif %}
+            <h3 class="course-name"><a href="{% url 'main:watches_details' watch.id %}">{{ watch.brand.title }} {{ watch.title }}</a></h3>
+            <div class="course-meta">
+                <a><span class="total-student">{{ watch.availability.title }}</span></a>
+                <a></i><span class="total-student">Референс: {{ watch.reference }}</span></a>
+            </div>
+            <div class="course-price">
+                <span class="price">{{ watch.price }} $</span>
+            </div>
+            <div class="course-bottom">
+            </div>
+            <button type="button" class="vs-btn style2" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-watch-name="id: {{ watch.id }}, реф.: {{ watch.reference }}"><i class="fas fa-check"></i>Оставить запрос</button>
+        </div>
+    </div>
+</div>

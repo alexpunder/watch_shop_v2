@@ -1,0 +1,27 @@
+<form method="post" action="{% url "utility_pages:contacts" %}" class="form-style5">
+    {% csrf_token %}
+    <div class="vs-circle"></div>
+    <h3 class="form-title">Обратная связь</h3>
+    <p class="form-text">По всем вопросам, пожеланиям и предложениям можете воспользоваться формой.</p>
+    <div class="form-group">
+        <label for="id_name"></label>
+        <input type="text" name="name" placeholder="Имя" maxlength="56" required id="id_name" value="{{ request.POST.name }}">
+    </div>
+    <div class="form-group">
+        <label for="id_phone"></label>
+        <input type="text" name="phone" placeholder="Телефон" maxlength="56" required id="id_phone" value="{{ request.POST.phone }}">
+    </div>
+    <div class="form-group">
+        <label for="id_tags"></label>
+        <select name="tags" id="id_tags">
+            <option selected hidden disabled>Тема обращения</option>
+            <option value="Общий вопрос" {% if request.POST.tags == 'Общий вопрос' %} selected {% endif %}>Общий вопрос</option>
+            <option value="Пожелания" {% if request.POST.tags == 'Пожелания' %} selected {% endif %}>Пожелания</option>
+            <option value="Обнаружена ошибка" {% if request.POST.tags == 'Обнаружена ошибка' %} selected {% endif %}>Обнаружена ошибка</option>
+          </select>
+    </div>
+    <div class="form-group">
+        <textarea type="text" name="text" id="id_text" placeholder="Сообщение" value="{{ request.POST.text }}"></textarea>
+    </div>
+    <button class="vs-btn">Отправить</button>
+</form>

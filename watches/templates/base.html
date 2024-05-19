@@ -1,21 +1,30 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="ru" dir="ltr">
+<html prefix="og: http://ogp.me/ns#" prefix="og: http://ogp.me/ns#">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Educino - Online Courses and Education HTML Template - Home Three</title>
-    <meta name="author" content="Vecuro">
-    <meta name="description" content="Educino - Online Courses and Education HTML Template">
-    <meta name="keywords" content="academic, artist, center, club, coach, college, drive, driving, education, entertainment, gambling, golf, jackpot, knowledge, money, multipurpose, music, song, student">
-    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="format-detection" content="telephone=no">
+	
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="YellowWatch - часовой бутик элитных швейцарских часов" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="author" content="alexpunder">
+    <meta name="keywords" content="" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicons - Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 
     <!--==============================
 	  Google Fonts
@@ -29,20 +38,39 @@
 	    All CSS File
 	============================== -->
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="assets/css/app.min.css"> -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/assets/css/app.min.css"> -->
     <!-- Fontawesome Icon -->
-    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css">
     <!-- Slick Slider -->
-    <link rel="stylesheet" href="assets/css/slick.min.css">
+    <link rel="stylesheet" href="/assets/css/slick.min.css">
     <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
 
 <body>
+
+    <!--==============================
+      Preloader
+    ==============================-->
+    <div class="preloader  ">
+        <div class="preloader-inner">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} text-center alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     {% include "includes/header.html" %}
     {% block content %}{% endblock content %}
@@ -53,19 +81,27 @@
         All Js File
     ============================== -->
     <!-- Jquery -->
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
     <!-- Slick Slider -->
-    <script src="assets/js/slick.min.js"></script>
-    <!-- <script src="assets/js/app.min.js"></script> -->
+    <script src="/assets/js/slick.min.js"></script>
+    <!-- <script src="/assets/js/app.min.js"></script> -->
     <!-- Bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
     <!-- Wow.js Animation -->
-    <script src="assets/js/wow.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
     <!-- Magnific Popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Main Js File -->
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 
+    <script>
+        $('#exampleModal2').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var watchName = button.data('watch-name') // Extract info from data-* attributes
+            var modal = $(this)
+            modal.find('#id_hiden_info').val(watchName)
+        })
+    </script>
 
 </body>
 
