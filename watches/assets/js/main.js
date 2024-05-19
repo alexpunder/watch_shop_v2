@@ -444,6 +444,13 @@
     type: 'iframe'
   });
 
+  /* modal watches request form */
+  $('#exampleModal2').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var watchName = button.data('watch-name') // Extract info from data-* attributes
+    var modal = $(this)
+    modal.find('#id_hiden_info').val(watchName)
+  })
 
   /*----------- 11. Testimonial Nav  ----------*/
   $('.testi-slide1').slick({

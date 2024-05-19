@@ -94,15 +94,6 @@
     <!-- Main Js File -->
     <script src="/assets/js/main.js"></script>
 
-    <script>
-        $('#exampleModal2').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var watchName = button.data('watch-name') // Extract info from data-* attributes
-            var modal = $(this)
-            modal.find('#id_hiden_info').val(watchName)
-        })
-    </script>
-
 </body>
 
 </html>

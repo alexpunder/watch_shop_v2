@@ -5,8 +5,6 @@
 <div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg-2.webp">
     <div class="container z-index-common">
         <div class="breadcumb-content">
-            <h1 class="breadcumb-title">Оценка часов</h1>
-            <p class="breadcumb-text">Часовой бутик с безупречной репутацией.</p>
             <div class="breadcumb-menu-wrap">
                 <ul class="breadcumb-menu">
                     <li><a href="{% url 'main:index' %}">Главная</a></li>
@@ -19,7 +17,7 @@
 
 <section class="space-extra-top space-extra-bottom">
     <div class="container">
-        <div class="row align-items-center">
+        {% comment %} <div class="row align-items-center">
             <div class="col-xl-12 text-center text-xl-start">
                 <div class="row gx-80 gy-xl-4 mb-4 mb-xl-0">
                     <div class="col-md-6 col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
@@ -66,48 +64,79 @@
                     </div>
                 </div>
             </div>
-            {% comment %} <div class="col-xl-5 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="position-relative">
-                    <form action="#" class="form-style2">
-                        <div class="form-inner">
-                            <h3 class="form-title h5">Оставьте заявку и наши специалисты непременно свяжется с Вами в ближайшее время.</h3>
-                            <div class="row">
-                                <div class="col-md-6 col-xl-12">
-                                    <div class="form-group">
-                                        <input type="text" name="name" id="name" placeholder="Complate Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-12">
-                                    <div class="form-group">
-                                        <input type="text" name="email" id="email" placeholder="Email Address">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-12">
-                                    <div class="form-group">
-                                        <select name="coursenames" id="coursenames">
-                                            <option selected disabled hidden>Select Course</option>
-                                            <option>Development</option>
-                                            <option>Ui Development</option>
-                                            <option>CMS Learning</option>
-                                            <option>Jamstack Master</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-12">
-                                    <div class="form-group">
-                                        <input type="text" name="email" id="phone" placeholder="Phone No">
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <button type="button" class="vs-btn">Отправить</button>
-                                    <a class="form-link" href="{% url 'main:faq' %}">Часто задаваемые вопросы</a>
-                                </div>
+        </div> {% endcomment %}
+        {% comment %} <div class="row align-items-center align-items-xxl-start space-bottom">
+            <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="picture-box2">
+                    <div class="picture-1 mega-hover"><img src="assets/img/about/about-2-1.jpg" alt="About Img"></div>
+                    <div class="picture-2 mega-hover"><img src="assets/img/about/about-2-2.jpg" alt="About Img"></div>
+                    <div class="picture-3 mega-hover"><img src="assets/img/about/about-2-3.jpg" alt="About Img"></div>
+                    <div class="vs-circle"></div>
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="about-box2">
+                    <div class="title-area">
+                        <span class="sec-subtitle">WELCOME TO GLOBAL EDUCATION</span>
+                        <h2 class="about-title h1">Take Your Learning Organization to The Next Level.</h2>
+                    </div>
+                    <div class="about-content">
+                        <p class="fs-md">Ducamb welcomed every pain avoided but in certa mstances owing to the claims of igation that off bu will frequently occuthe obligations of business it will ently ofcurs that pleasures.</p>
+
+                        <div class="call-media">
+                            <div class="media-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div class="media-body">
+                                <span class="media-label">Call Anytime 24/7</span>
+                                <p class="media-info"><a href="tel:+26921562148" class="text-inherit">+269 2156 2148</a></p>
                             </div>
                         </div>
-                        <div class="vs-circle color2"></div>
-                    </form>
+
+                    </div>
                 </div>
-            </div> {% endcomment %}
+            </div>
+        </div> {% endcomment %}
+        <div class="row align-items-center space-bottom">
+            <div class="col-md-6 col-lg process-inner1 order-2 order-lg-1">
+                <div class="process-style1">
+                    <span class="process-number">1</span>
+                    <div class="process-content">
+                        <h3 class="process-title">Профессиональная оценка</h3>
+                        <p class="process-text">Наши эксперты проведут тщательную и точную оценку Ваших часов.</p>
+                    </div>
+                </div>
+                <div class="process-style1">
+                    <span class="process-number">2</span>
+                    <div class="process-content">
+                        <h3 class="process-title">Высокие стандарты</h3>
+                        <p class="process-text">Наша компания следует строгим стандартам оценки, гарантируя честные и справедливые предложения.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 order-1 order-lg-2 mb-30 mb-md-5 mb-lg-0">
+                <div class="img-box1 style2">
+                    <div class="vs-circle">
+                        <div class="mega-hover">
+                            <img src="assets/img/about/about-2-1.webp" alt="banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg process-inner2 order-3">
+                <div class="process-style1">
+                    <span class="process-number">3</span>
+                    <div class="process-content">
+                        <h3 class="process-title">Максимальная выгода</h3>
+                        <p class="process-text">Гарантия высокой цены за Ваши часы, чтобы Вы получили максимальную выгоду от сделки.</p>
+                    </div>
+                </div>
+                <div class="process-style1">
+                    <span class="process-number">4</span>
+                    <div class="process-content">
+                        <h3 class="process-title">Удобно и быстро</h3>
+                        <p class="process-text">Мы предлагаем быстрый выкуп и расчет в день обращения, делая процесс максимально удобным и быстрым для Вас.</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-lg-12" data-wow-delay="0.4s">
             <div class="position-relative">

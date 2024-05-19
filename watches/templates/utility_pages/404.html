@@ -5,8 +5,6 @@
 <div class="breadcumb-wrapper " data-bg-src="/assets/img/breadcumb/breadcumb-bg.png">
     <div class="container z-index-common">
         <div class="breadcumb-content">
-            <h1 class="breadcumb-title">Error Page</h1>
-            <p class="breadcumb-text">Search over 200 individual encyclopedias and reference books.</p>
             <div class="breadcumb-menu-wrap">
                 <ul class="breadcumb-menu">
                     <li><a href="{% url 'main:index' %}">Главная</a></li>
@@ -30,10 +28,10 @@
                     <h1 class="error-title">oooops!</h1>
                     <h2 class="error-title2">Страница не найдена</h2>
                     <p class="error-text">ресурс, который вы ищете, мог быть удален или он временно недоступен</p>
-                    {% comment %} <form action="#" class="search-inline">
-                        <input type="text" class="form-control" placeholder="Enter Your Keyword....">
-                        <button><i class="far fa-search"></i></button>
-                    </form> {% endcomment %}
+                    <form action="{% url 'main:search' %}" method="GET" class="search-inline">
+                        <input type="text" class="form-control" name="search" placeholder="Что Вас интересует?">
+                        <button type="submit"><i class="far fa-search"></i></button>
+                    </form>
                     <a href="{% url 'main:index' %}" class="vs-btn"><i class="fas fa-home me-2 pe-1"></i>Вернуться на главную страницу</a>
                 </div>
             </div>
