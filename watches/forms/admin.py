@@ -11,28 +11,10 @@ class BuybackImagesInline(admin.TabularInline):
     model = BuybackImage
     extra = 0
 
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
-
 
 class ValuationImagesInline(admin.TabularInline):
     model = ValuationImage
     extra = 0
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
 
 
 @admin.register(ValuationWatches)
@@ -54,11 +36,6 @@ class ValuationWatchesAdmin(admin.ModelAdmin):
     list_filter = (
         'processed',
     )
-    readonly_fields = (
-        'name', 'phone', 'text', 'email', 'communication_method',
-        'brand', 'model', 'year', 'price', 'condition', 'equipment',
-        'pub_date'
-    )
 
 
 @admin.register(BuybackWatches)
@@ -79,11 +56,6 @@ class BuybackWatchAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'processed',
-    )
-    readonly_fields = (
-        'name', 'phone', 'text', 'email', 'communication_method',
-        'brand', 'model', 'year', 'price', 'condition', 'equipment',
-        'pub_date',
     )
 
 

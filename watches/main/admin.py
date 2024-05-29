@@ -1,9 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group, User
 
 from .models import (
     Watch, Brand, Special, Shape, ForWho, Material,
     ConditionChoice, AvailabilityChoice
 )
+
+admin.site.unregister(Group)
+admin.site.unregister(User)
 
 
 @admin.register(Watch)
