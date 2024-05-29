@@ -9908,3 +9908,30 @@ blockquote.vs-quote cite {
 body.no-scroll {
   overflow: hidden;
 }
+
+/* Мои дополнительные кастомные стили */
+.image-container-1 {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  width: 240px; /* Ширина контейнера */
+  height: 148px; /* Высота контейнера */
+}
+
+.image-container-1 img {
+  max-width: 100%; /* Максимальная ширина изображения */
+  max-height: 100%; /* Максимальная высота изображения */
+}
+
+.image-container-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 610; /* Ширина контейнера */
+  height: 442; /* Высота контейнера */
+}
+
+.image-container-3 img {
+  max-width: 100%; /* Максимальная ширина изображения */
+  max-height: 100%; /* Максимальная высота изображения */
+}

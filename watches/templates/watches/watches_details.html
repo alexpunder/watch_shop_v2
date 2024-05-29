@@ -6,24 +6,10 @@
     <div class="container">
         <div class="row gx-50">
             <div class="col-lg-6">
-                <style>
-                    .image-container-3 {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 610; /* Ширина контейнера */
-                        height: 442; /* Высота контейнера */
-                    }
-                
-                    .image-container-3 img {
-                        max-width: 100%; /* Максимальная ширина изображения */
-                        max-height: 100%; /* Максимальная высота изображения */
-                    }
-                </style>
                 {% if watch.image %}
-                    <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="{{ watch.image.url }}" alt="girl"></div>
+                    <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="{{ watch.image.url }}" alt="watches"></div>
                 {% else %}
-                    <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="/assets/img/course/course-1-1.png" alt="girl"></div>
+                    <div class="mega-hover image-container-3"><img style="max-width: 610; max-height: 442;" src="/assets/img/course/course-1-1.png" alt="watches"></div>
                 {% endif %}
                 <div class="course-category">
                     <a>{{ watch.condition.title }}</a>

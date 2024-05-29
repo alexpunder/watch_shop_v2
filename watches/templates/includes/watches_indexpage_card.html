@@ -2,9 +2,9 @@
     <div class="course-style4">
         <div class="image-container">
             {% if watch.image %}
-                <a href="{% url 'main:watches_details' watch.id %}"><img src="{{ watch.image.url }}" alt="Course Img"></a>
+                <a href="{% url 'main:watches_details' watch.id %}"><img class="w-100" src="{{ watch.image.url }}" alt="Course Img"></a>
             {% else %}
-                <a href="{% url 'main:watches_details' watch.id %}"><img src="assets/img/course/course-1-1.png" alt="Course Img"></a>
+                <a href="{% url 'main:watches_details' watch.id %}"><img class="w-100" src="assets/img/course/course-1-1.png" alt="Course Img"></a>
             {% endif %}
         </div>
         <div class="course-content">

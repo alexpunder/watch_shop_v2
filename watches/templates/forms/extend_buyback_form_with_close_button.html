@@ -1,6 +1,6 @@
 <form method="post" action="{% url 'main:buyback' %}" class="form-style5 modal-content" enctype="multipart/form-data">
     {% csrf_token %}
-    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть" style="position: absolute; top: 15px; right: 15px; background-color: transparent; border: none; font-size: 30px; padding: 20px;">
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть" style="position: absolute; top: 15px; right: 15px; background-color: transparent; border: none; font-size: 30px;">
         <span aria-hidden="true"><i class="fal fa-times"></i></span>
     </button>
     <div class="form-inner">
@@ -10,13 +10,13 @@
             <div class="col-md-6 col-xl-6">
                 <div class="form-group">
                     <label for="id_name"></label>
-                    <input type="text" name="name" placeholder="Имя" maxlength="56" required id="id_name" value="{{ request.POST.name }}">
+                    <input type="text" name="name" placeholder="Имя*" maxlength="56" required id="id_name" value="{{ request.POST.name }}">
                 </div>
             </div>
             <div class="col-md-6 col-xl-6">
                 <div class="form-group">
                     <label for="id_phone"></label>
-                    <input type="tel" name="phone" placeholder="Номер для связи" required id="id_phone" value="{{ request.POST.phone }}">
+                    <input type="tel" name="phone" placeholder="Номер для связи*" required id="id_phone" value="{{ request.POST.phone }}">
                 </div>
             </div>
             <div class="col-md-6 col-xl-6">
@@ -35,7 +35,7 @@
             <div class="col-md-6 col-xl-6">
                 <div class="form-group">
                     <label for="id_email"></label>
-                    <input type="email" name="email" placeholder="Почта" maxlength="255" required id="id_email" value="{{ request.POST.email }}">
+                    <input type="email" name="email" placeholder="Почта*" maxlength="255" required id="id_email" value="{{ request.POST.email }}">
                 </div>
             </div>
         </div>
