@@ -16,8 +16,11 @@
         </div>
         <div class="course-content">
             <div class="course-top">
-                <div class="course-review">{{ watch.availability }}</div>
-                <span class="course-price">{{ watch.price }}$</span>
+                <div class="course-review col-md-5">{{ watch.availability }}</div>
+                <div class="col-md-7">
+                    <span class="course-price">₽ {{ watch.price }}</span>
+                    <span class="course-price">$ {{ watch.get_converted_price }}</span>
+                </div>
             </div>
             <h3 class="h5 course-name"><a href="{% url 'main:watches_details' watch.id %}" class="text-inherit">{{ watch.brand.title }}</a></h3>
             <div class="course-teacher"><a class="text-inherit" href="{% url 'main:watches_details' watch.id %}">{{ watch.title }}</a></div>

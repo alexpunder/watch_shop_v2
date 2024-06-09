@@ -18,11 +18,14 @@
                 <a></i><span class="total-student">Референс: {{ watch.reference }}</span></a>
             </div>
             <div class="course-price">
-                <span class="price">{{ watch.price }} $</span>
+                <div class="col-auto">
+                    <span class="price">₽ {{ watch.price }}<br><br></span>
+                    <span class="price">$ {{ watch.get_converted_price }}</span>
+                </div>
             </div>
             <div class="course-bottom">
+                <button type="button" class="vs-btn style2" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-watch-name="id: {{ watch.id }}, реф.: {{ watch.reference }}"><i class="fas fa-check"></i>Оставить запрос</button>
             </div>
-            <button type="button" class="vs-btn style2" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-watch-name="id: {{ watch.id }}, реф.: {{ watch.reference }}"><i class="fas fa-check"></i>Оставить запрос</button>
         </div>
     </div>
 </div>

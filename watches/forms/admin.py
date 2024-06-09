@@ -1,10 +1,7 @@
 from django.contrib import admin
 
-from .models import (
-    ShortMain, BuybackWatches, BuybackImage, Call,
-    ValuationWatches, ValuationImage, WatchRequest,
-    Feedback
-)
+from .models import (BuybackImage, BuybackWatches, Call, Feedback, ShortMain,
+                     ValuationImage, ValuationWatches, WatchRequest)
 
 
 class BuybackImagesInline(admin.TabularInline):

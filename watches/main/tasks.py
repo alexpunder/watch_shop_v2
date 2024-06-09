@@ -1,8 +1,8 @@
 import os
 
-from telegram import Bot
-from dotenv import load_dotenv
 from celery import shared_task
+from dotenv import load_dotenv
+from telegram import Bot
 
 load_dotenv()
 

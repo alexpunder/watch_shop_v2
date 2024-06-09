@@ -100,6 +100,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'watches.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 DB_ENGINE = os.getenv('DB_ENGINE', 'sqlite3')
 

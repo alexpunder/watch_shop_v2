@@ -1,10 +1,10 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib import messages
 
 from forms.forms import FeedbackForm
 from main.tasks import send_message
-from watches.constants import DT_FORMAT, TITLES_DATA, DESCRIPTIONS_DATA
+from watches.constants import DESCRIPTIONS_DATA, DT_FORMAT, TITLES_DATA
 
 
 def about_page_view(request):

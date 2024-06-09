@@ -2,11 +2,8 @@ import django_filters
 from django import forms
 from django.db.models import Q
 
-
-from .models import (
-    Watch, ConditionChoice, AvailabilityChoice, Brand, Special,
-    ForWho, Shape, Material
-)
+from .models import (AvailabilityChoice, Brand, ConditionChoice, ForWho,
+                     Material, Shape, Special, Watch)
 
 
 class SearchFilter(django_filters.FilterSet):
