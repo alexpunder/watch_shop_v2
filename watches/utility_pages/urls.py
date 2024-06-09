@@ -1,9 +1,7 @@
 from django.urls import path
 
-from .views import (
-    about_page_view, contacts_page_view, faq_page_view,
-    confidential_page_view, terms_page_view
-)
+from .views import (about_page_view, confidential_page_view,
+                    contacts_page_view, faq_page_view, terms_page_view)
 
 app_name = 'utility_pages'
 

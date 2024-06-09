@@ -1,10 +1,11 @@
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db import transaction
+from django.http import HttpResponseRedirect
 
-from .forms import ShortForm, CallForm, WatchRequestForm
 from main.tasks import send_message
 from watches.constants import DT_FORMAT
+
+from .forms import CallForm, ShortForm, WatchRequestForm
 
 
 def footer_form_view(request):

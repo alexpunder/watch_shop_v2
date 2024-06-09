@@ -1,9 +1,7 @@
 from django.urls import path
 
-from .views import (
-    footer_form_view, index_page_short_form,
-    call_form_view, watch_request_form_view
-)
+from .views import (call_form_view, footer_form_view, index_page_short_form,
+                    watch_request_form_view)
 
 app_name = 'forms'
 

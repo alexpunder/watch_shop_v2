@@ -1,12 +1,10 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django import forms
 
 from watches.constants import MAX_IMAGES_FORM
-from .models import (
-    ShortMain, Feedback, Call, WatchRequest,
-    BuybackWatches, ValuationWatches
-)
+
+from .models import (BuybackWatches, Call, Feedback, ShortMain,
+                     ValuationWatches, WatchRequest)
 
 
 class ExtendValuationForm(forms.ModelForm):

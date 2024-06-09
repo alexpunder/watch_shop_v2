@@ -1,12 +1,11 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
-from django.core.validators import MinValueValidator
 
-from watches.constants import (
-    CONDITIONS_CHOICES, AVAILABILITY_CHOICES, SPECIALS_CHOICES,
-    FOR_WHO_CHOICES, SHAPES_CHOICES, MATERIALS_CHOICES, MECHANISM_CHOICES,
-    MIN_WATCH_PRICE
-)
+from watches.constants import (AVAILABILITY_CHOICES, CONDITIONS_CHOICES,
+                               FOR_WHO_CHOICES, MATERIALS_CHOICES,
+                               MECHANISM_CHOICES, MIN_WATCH_PRICE,
+                               SHAPES_CHOICES, SPECIALS_CHOICES)
 
 
 class Convertation(models.Model):

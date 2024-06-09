@@ -1,19 +1,18 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db import transaction
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 
-from .models import Watch
-from .filters import SearchFilter, WatchesFilter
-from .tasks import send_message
+from forms.forms import ExtendBuybackForm, ExtendValuationForm
 from forms.models import BuybackImage, ValuationImage
-from forms.forms import ExtendValuationForm, ExtendBuybackForm
-from watches.constants import (
-    DT_FORMAT, MAX_WATCHES_ON_INDEX_PAGE, TITLES_DATA, DESCRIPTIONS_DATA,
-    MAX_WATCHES_ON_WATCHES_PAGE
-)
+from watches.constants import (DESCRIPTIONS_DATA, DT_FORMAT,
+                               MAX_WATCHES_ON_INDEX_PAGE,
+                               MAX_WATCHES_ON_WATCHES_PAGE, TITLES_DATA)
+
+from .filters import SearchFilter, WatchesFilter
+from .models import Watch
+from .tasks import send_message
 
 EXCLUDE_FIELDS = (
     'id', 'title', 'is_on_main', 'condition', 'availability', 'special',

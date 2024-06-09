@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
 
-from .models import (
-    Watch, Brand, Special, Shape, ForWho, Material,
-    ConditionChoice, AvailabilityChoice, Convertation
-)
+from .models import (AvailabilityChoice, Brand, ConditionChoice, Convertation,
+                     ForWho, Material, Shape, Special, Watch)
 
 admin.site.unregister(Group)
 admin.site.unregister(User)

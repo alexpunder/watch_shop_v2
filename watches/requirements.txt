@@ -17,6 +17,7 @@ django-phonenumber-field==7.3.0
 django-phonenumbers==1.0.1
 django-redis==5.4.0
 gunicorn==22.0.0
+isort==5.13.2
 kombu==5.3.7
 packaging==24.0
 phonenumbers==8.13.36

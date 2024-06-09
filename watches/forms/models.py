@@ -1,12 +1,13 @@
-from django.db import models
 from django.core.validators import MinValueValidator
+from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+from watches.constants import (COMMUNICATION_METHOD_CHOICES,
+                               CONDITIONS_FORM_CHOICES, DT_FORMAT,
+                               EQUIPMENT_FORM_CHOICES, MIN_PRICE_BUYBACK,
+                               MIN_YEAR_BUYBACK, TAGS_CHOICES)
+
 from .validations import max_year_validator
-from watches.constants import (
-    TAGS_CHOICES, COMMUNICATION_METHOD_CHOICES, CONDITIONS_FORM_CHOICES,
-    EQUIPMENT_FORM_CHOICES, DT_FORMAT, MIN_YEAR_BUYBACK, MIN_PRICE_BUYBACK
-)
 
 
 class Base(models.Model):

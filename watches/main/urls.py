@@ -1,9 +1,8 @@
 from django.urls import path
 
-from .views import (
-    index_page_view, watches_valuation_page_view, watches_page_view,
-    watches_details_page_view, buyback_view_page, search_view
-)
+from .views import (buyback_view_page, index_page_view, search_view,
+                    watches_details_page_view, watches_page_view,
+                    watches_valuation_page_view)
 
 app_name = 'main'
 
