@@ -5,7 +5,7 @@ on:
 
 jobs:
   build_and_push_to_docker_hub:
-    name: Push Dokcer image to DockerHub
+    name: Push backend Docker image to DockerHub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
@@ -74,16 +74,6 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
-    - name: Copy docker-compose.yml via ssh
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "docker-compose.prod.yml"
-        target: "watches"
-        overwrite: true
     - name: Run command on remote server
       uses: D3rHase/ssh-command-action@v0.2.2
       with:
