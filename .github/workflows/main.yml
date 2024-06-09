@@ -75,12 +75,12 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
     - name: Run command on remote server
-      uses: D3rHase/ssh-command-action@v0.2.2
+      uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{secrets.SSH_HOST}}
-        user: ${{secrets.SSH_USER}}
-        private_key: ${{secrets.SSH_PRIVATE_KEY}}
-        command: |
+        username: ${{secrets.SSH_USER}}
+        password: ${{secrets.SSH_PASSWORD}}
+        script: |
           cd watches
           sudo docker compose -f docker-compose.prod.yml pull
           sudo docker compose -f docker-compose.prod.yml down
