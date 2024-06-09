@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group, User
 
 from .models import (
     Watch, Brand, Special, Shape, ForWho, Material,
-    ConditionChoice, AvailabilityChoice
+    ConditionChoice, AvailabilityChoice, Convertation
 )
 
 admin.site.unregister(Group)
@@ -64,4 +64,9 @@ class ForWhoAdmin(admin.ModelAdmin):
 
 @admin.register(Material)
 class MaterialAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Convertation)
+class ConvertationAdmin(admin.ModelAdmin):
     pass

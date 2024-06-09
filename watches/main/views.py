@@ -17,12 +17,16 @@ from watches.constants import (
 
 EXCLUDE_FIELDS = (
     'id', 'title', 'is_on_main', 'condition', 'availability', 'special',
-    'for_who', 'shape', 'price', 'reference', 'image', 'material'
+    'for_who', 'shape', 'price', 'reference', 'image', 'material',
+    'convertation',
 )
 
 
 def search_view(request):
-    watches = SearchFilter(request.GET, queryset=Watch.objects.all())
+    watches = SearchFilter(
+        request.GET,
+        queryset=Watch.objects.select_related('convertation')
+    )
     return render(
         request,
         template_name='watches/search_watches.html',
@@ -37,6 +41,8 @@ def search_view(request):
 def index_page_view(request):
     watches = Watch.objects.filter(
         is_on_main=True
+    ).select_related(
+        'convertation'
     )[:MAX_WATCHES_ON_INDEX_PAGE]
 
     return render(
@@ -142,7 +148,7 @@ def watches_valuation_page_view(request):
 
 def watches_page_view(request):
     watches_filter = WatchesFilter(
-        request.GET, queryset=Watch.objects.all()
+        request.GET, queryset=Watch.objects.select_related('convertation')
     )
     paginator = Paginator(
         watches_filter.qs,
@@ -164,7 +170,10 @@ def watches_page_view(request):
 
 
 def watches_details_page_view(request, watch_id):
-    watch = get_object_or_404(Watch, id=watch_id)
+    watch = get_object_or_404(
+        Watch.objects.select_related('convertation'),
+        id=watch_id
+    )
     data = {}
 
     for field in watch._meta.fields:

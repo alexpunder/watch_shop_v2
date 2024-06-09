@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="id_text"></label>
-        <input type="text" name="text" placeholder="Ваше сообщение" maxlength="56" required id="id_text" value="{{ request.POST.text }}">
+        <input type="text" name="text" placeholder="Ваше сообщение" maxlength="255" required id="id_text" value="{{ request.POST.text }}">
     </div>
     <button type="submit" class="vs-btn">Отправить</button>
 </form>

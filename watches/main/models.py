@@ -9,6 +9,23 @@ from watches.constants import (
 )
 
 
+class Convertation(models.Model):
+    convertation_rate_dollar = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+    )
+
+    class Meta:
+        verbose_name = 'Конвертирование валюты'
+        verbose_name_plural = 'Конвертирование валюты'
+
+    def __str__(self):
+        return (
+            'Курс конвертирования из рублей в доллары: '
+            f'{self.convertation_rate_dollar}'
+        )
+
+
 class Base(models.Model):
 
     class Meta:
@@ -237,6 +254,12 @@ class Watch(Base):
             'Рекомендуемы размер: 400х400, формат: .webp'
         )
     )
+    convertation = models.ForeignKey(
+        Convertation,
+        on_delete=models.SET_DEFAULT,
+        default=1,
+        verbose_name='Конвертация в доллары'
+    )
 
     class Meta:
         ordering = ['-id']
@@ -247,6 +270,10 @@ class Watch(Base):
         return reverse(
             'main:watches_details', kwargs={'watch_id': self.pk}
         )
+
+    @property
+    def get_converted_price(self):
+        return self.price // self.convertation.convertation_rate_dollar
 
 
 class ConditionChoice(Base):
